@@ -38,6 +38,7 @@
     "xss-clean": "^0.1.4"
   },
   "devDependencies": {
+    "buffer": "^6.0.3",
     "cross-env": "^7.0.3",
     "parcel": "^2.11.0"
   }
