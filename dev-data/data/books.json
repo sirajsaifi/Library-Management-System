@@ -1,0 +1,122 @@
+[
+    {
+        "_id": "5c8a359914eb5c17645c911a",
+        "image": "book-1.jpg",
+        "bookName": "Conceptual Chemistry V1",
+        "bookAuthor": "Dr. S.K Jain",
+        "bookPublisher": "S.Chand",
+        "bookPages": 570,
+        "bookPrice": 825,
+        "bookState": "Available"
+    },
+    {
+        "_id": "5c8a359914eb5c17645c911b",
+        "image": "book-2.jpg",
+        "bookName": "Conceptual Chemistry V2",
+        "bookAuthor": "Dr. S.K Jain",
+        "bookPublisher": "S.Chand",
+        "bookPages": 611,
+        "bookPrice": 799,
+        "bookState": "Available"
+    },
+    {
+        "_id": "5c8a359914eb5c17645c911c",
+        "image": "book-3.jpg",
+        "bookName": "Biology for Class X1",
+        "bookAuthor": "Dr. P.S Verma",
+        "bookPublisher": "S.Chand",
+        "bookPages": 800,
+        "bookPrice": 1630,
+        "bookState": "Available"
+    },
+    {
+        "_id": "5c8a359914eb5c17645c911d",
+        "image": "book-4.jpg",
+        "bookName": "Principles of Physics",
+        "bookAuthor": "V.k Mehta",
+        "bookPublisher": "S.Chand",
+        "bookPages": 785,
+        "bookPrice": 1735,
+        "bookState": "Available"
+    },
+    {
+        "_id": "5c8a359914eb5c17645c911e",
+        "image": "book-5.jpg",
+        "bookName": "Mathematics",
+        "bookAuthor": "M.L Aggarwal",
+        "bookPublisher": "Arya Publicaions",
+        "bookPages": 600,
+        "bookPrice": 425,
+        "bookState": "Available"
+    },
+    {
+        "_id": "5c8a359914eb5c17645c911f",
+        "image": "book-6.jpg",
+        "bookName": "Mathematics Question Bank",
+        "bookAuthor": "",
+        "bookPublisher": "Oswal Books",
+        "bookPages": 873,
+        "bookPrice": 599,
+        "bookState": "Available"
+    },
+    {
+        "_id": "5c8a359914eb5c17645c9112",
+        "image": "book-7.jpg",
+        "bookName": "Mathematics V1-V2",
+        "bookAuthor": "R.D Sharma",
+        "bookPublisher": "Dhanpati Publication",
+        "bookPages": 1000,
+        "bookPrice": 685,
+        "bookState": "Available"
+    },
+    {
+        "_id": "5c8a359914eb5c17645c9113",
+        "image": "book-8.jpg",
+        "bookName": "Financial Accounting",
+        "bookAuthor": "T.S Grewal",
+        "bookPublisher": "Sultan Chand",
+        "bookPages": 808,
+        "bookPrice": 763,
+        "bookState": "Available"
+    },
+    {
+        "_id": "5c8a359914eb5c17645c9114",
+        "image": "book-9.jpg",
+        "bookName": "Accountancy",
+        "bookAuthor": "D.K Goel",
+        "bookPublisher": "Avichal Publication",
+        "bookPages": 850,
+        "bookPrice": 779,
+        "bookState": "Available"
+    },
+    {
+        "_id": "5c8a359914eb5c17645c9115",
+        "image": "book-10.jpg",
+        "bookName": "Micro Economics",
+        "bookAuthor": "T.R Jain",
+        "bookPublisher": "VK",
+        "bookPages": 468,
+        "bookPrice": 504,
+        "bookState": "Available"
+    },
+    {
+        "_id": "5c8a359914eb5c17645c9116",
+        "image": "book-11.jpg",
+        "bookName": "Statistics for Economics",
+        "bookAuthor": "T.R Jain",
+        "bookPublisher": "VK",
+        "bookPages": 402,
+        "bookPrice": 491,
+        "bookState": "Available"
+    },
+    {
+        "_id": "5c8a359914eb5c17645c9117",
+        "image": "book-12.png",
+        "bookName": "Business Studies",
+        "bookAuthor": "Poonam Gandhi",
+        "bookPublisher": "VK",
+        "bookPages": 360,
+        "bookPrice": 603,
+        "bookState": "Available"
+    }
+]

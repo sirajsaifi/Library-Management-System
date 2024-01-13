@@ -1,0 +1,259 @@
+html{
+    width: 100%;
+}
+
+#overview-page {
+    margin: 2vh 2vw;
+    height: auto;
+}
+
+nav {
+    height: 17vh;
+    padding: 0 1.3vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3e3e3e;
+}
+
+#nav-user-right {
+    width: 70vw;
+    display: flex;
+    align-items: center;
+}
+
+#nav-book {
+    padding: 1.5vh 1vw;
+    margin: 1.5vh 1vw;
+    font-family: 'Barlow', sans-serif;
+    font-size: 4vh;
+}
+
+.nav-logo-img {
+    height: 13vh;
+}
+
+#nav-user-left {
+    width: auto;
+    display: flex;
+    align-items: center;
+}
+
+.nav-user-img {
+    padding: 1.5vh 1vw 1.5vh 0.1vw;
+    margin: 1.5vh 1.2vw 1.5vh 0.1vw;
+}
+
+.nav-login-button {
+    padding: 1.5vh 1vw;
+    margin: 1.5vh 2.3vw;
+    height: 5vh;
+    font-family: 'Barlow', sans-serif;
+    font-size: 4vh;
+    color: white;
+    text-decoration: none;
+    border: 0.1vw solid rgb(59, 153, 59);
+    border-radius: 2vw;
+}
+
+.nav-login-button:hover {
+    background-color: rgb(59, 153, 59);
+}
+
+.nav-logout-button {
+    padding: 1.5vh 1vw;
+    margin: 1.5vh 2.3vw;
+    height: 5vh;
+    font-family: 'Barlow', sans-serif;
+    font-size: 4vh;
+    color: white;
+    text-decoration: none;
+    border: 0.1vw solid rgb(255, 0, 0);
+    border-radius: 2vw;
+}
+
+.nav-logout-button:hover {
+    background-color: rgb(255, 0, 0);
+}
+
+#nav-user-img {
+    border-radius: 100%;
+    height: 11vh;
+    width: 4vw;
+}
+
+a.navtext {
+    color: white;
+    text-decoration: none;
+}
+
+#main-content{
+    background-color: #f4f4f4;
+}
+
+.card-container{
+    padding: 2vh 2vw;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.card{
+    margin: 5vh 1vw;
+    width: 26vw;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card-header{
+    width: inherit;
+}
+
+.books-image{
+    width: inherit;
+    height: 50vh;
+}
+
+.card-details{
+    box-sizing: border-box;
+    padding: 2vh 0.7vw;
+    background-color: white;
+    line-height: 6vh;
+    font-size: 4vh;
+}
+
+.book-name{
+    padding: 2vh 0vw;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.card-footer{
+    padding: 4.5vh 0.5vw;
+    width: inherit;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: #e6e6e6;
+}
+
+.book-state {
+    padding: 2vh 0.5vw;
+    border: 0.1vw solid rgb(59, 153, 59);
+    border-radius: 2vw;
+    background-color: rgb(59, 153, 59);
+    color: white;
+    font-size: 4vh;
+}
+
+#form-login {
+    width: 100%;
+    height: 150vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#login-page-bg-img {
+    object-fit: fill;
+    width: inherit;
+    height: inherit;
+    position: absolute;
+}
+
+#login-form {
+    height: auto;
+    width: auto;
+    border: 0.1vw solid white;
+    border-radius: 1vw;
+    backdrop-filter: blur(8px);
+    position: relative;
+}
+
+.login-form-section {
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    padding: 2vh, 2vw;
+}
+
+.login-form-header {
+    margin: 0 0 6vh 0;
+}
+
+#login-form-header-line {
+    width: 65%;
+}
+
+#login-form-heading {
+    margin: 10vh 0 4vh 0;
+    font-family: 'Salsa', cursive;
+    text-align: center;
+    color: white;
+    font-size: 7vh;
+}
+
+#email, #forgot-password {
+    display: block;
+}
+
+.login-form-input {
+    width: 15vw;
+    height: 6.5vh;
+    margin: 3vh 5vw;
+    padding: 0.4vh 1.3vw;
+    border-radius: 5vw;
+    border: 0.1vw solid white;
+    color: white;
+    font-size: 3vh;
+    font-family: 'Raleway', sans-serif;
+    background: none;;
+}
+
+.login-form-input::placeholder {
+    color: white;
+    font-size: 3vh;
+    font-family: 'Raleway', sans-serif;
+}
+
+.login-form-footer {
+    display: grid;
+    justify-content: center;
+}
+
+#forgot-password {
+    color: white;
+    text-decoration: none;
+    font-size: 3vh;
+    font-family: 'Raleway', sans-serif;
+}
+
+.login-form-submit-btn {
+    padding: 1.5vh 1.5vw;
+    margin: 4vh 0 7vh 0;    
+    font-family: 'Raleway', sans-serif;
+    color: black;
+    background: none;
+    border: 0.1vw solid white;
+    border-radius: 3vw;
+    font-size: 3vh;
+    color: white;
+}
+
+.login-form-submit-btn:hover {
+    background-color: white;
+    color: black;
+}
+
+/* .alert {
+
+}
+
+.alert-succcess {
+
+}
+
+.alert-error {
+
+} */

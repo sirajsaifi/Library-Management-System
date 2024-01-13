@@ -1,0 +1,29 @@
+extends base
+
+mixin navItem(link, text, icon, active)
+    li(class = `${active} ? 'side-nav--active' : ''`)
+        a(href=`${link}`) 
+            img.navItems-icons(src=`img/icons/${icon}.jpg`, alt=`${icon}`)
+            | #{text}
+
+block content 
+    #main-content 
+        #user-view
+            #user-account-menu
+                if (user.role === 'staff')
+                    ul.side-nav 
+                        +navItem('#', 'Settings', 'settings', active)
+
+                else if (user.role === 'student')
+                    ul.side-nav 
+                        +navItem('#', 'Settings', 'settings', active)
+                        +navItem('#', 'Books Issued', 'books-issued')
+
+                else if (user.role === 'librarian')
+                    ul.side-nav 
+                        +navItem('#', 'Settings', 'settings', active)
+                        +navItem('#', 'Students', 'students')
+                        +navItem('#', 'Staff', 'staff')
+                        +navItem('#', 'Books', 'books')
+
+            #user-account-content 

@@ -1,0 +1,22 @@
+extends base
+
+block content
+    #main-content 
+        .card-container 
+            each book in books
+                .card 
+                    .card-header 
+                        img.books-image(src=`/img/books/${book.image}`, alt=`${book.bookName}`)
+                    .card-details 
+                        .book-name
+                            b= `${book.bookName}`
+                        b= `Book Author : ${book.bookAuthor}`
+                        br
+                        b= `Book Publisher : ${book.bookPublisher}`
+                        br
+                        b= `Book Pages : ${book.bookPages}`
+                        br
+                        b= `Book Price : ${book.bookPrice}`
+                        br
+                    .card-footer 
+                        span.book-state Available
