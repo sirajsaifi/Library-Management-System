@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 
 const Book = require('./../../models/bookModel')
+const User = require('./../../models/userModel')
 
 dotenv.config({ path : './config.env'})
 
@@ -17,11 +18,13 @@ mongoose.connect ( DB )
 
 //read json files
 const books = JSON.parse(fs.readFileSync(`${__dirname}/books.json`, 'utf-8'))
+const users = JSON.parse(fs.readFileSync(`${__dirname}/users.json`, 'utf-8'))
 
 // importing data into database
 const importData = async() => {
     try {
         await Book.create( books )
+        await User.create(users)
         console.log('Data successfully loaded.')
     }
     catch (err) {
@@ -34,6 +37,7 @@ const importData = async() => {
 const deleteData = async() => {
     try {
         await Book.deleteMany()
+        await User.deleteMany()
         console.log('Data successfully deleted.')
     }
     catch (err) {

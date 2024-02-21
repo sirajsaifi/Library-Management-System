@@ -660,18 +660,99 @@ var _webImmediateJs = require("core-js/modules/web.immediate.js");
 var _runtime = require("regenerator-runtime/runtime");
 var _alerts = require("./alerts");
 var _login = require("./login");
+var _settings = require("./settings");
 //we used import method above because we are using using export/import method of ES6 for frontend
 //and the files we are importing are using export method of ES6
 const loginForm = document.querySelector("#login-form");
 const logoutBtn = document.querySelector(".nav-logout-button");
+const userDataForm = document.querySelector(".form-user-data");
+const userPasswordForm = document.querySelector(".form-user-password");
+const createUserForm = document.querySelector(".create-user-form");
+const updateUserForm = document.querySelector("#update-user-form");
+const deleteUserForm = document.querySelector("#delete-user-form");
 if (loginForm) loginForm.addEventListener("submit", (e)=>{
     e.preventDefault();
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     (0, _login.login)(email, password);
 });
+if (logoutBtn) logoutBtn.addEventListener("click", (0, _login.logout));
+if (userDataForm) userDataForm.addEventListener("submit", (e)=>{
+    e.preventDefault();
+    const form = new FormData();
+    form.append("name", document.getElementById("name").value);
+    form.append("email", document.getElementById("email").value);
+    form.append("gender", document.getElementById("gender").value);
+    form.append("number", document.getElementById("number").value);
+    form.append("photo", document.getElementById("photo").files[0]);
+    (0, _settings.updateSettings)(form, "data");
+});
+if (userPasswordForm) userPasswordForm.addEventListener("submit", async (e)=>{
+    //async is used because we are changing the text content
+    e.preventDefault();
+    document.getElementById("save-password-btn").textContent = "Updating...";
+    const passwordCurrent = document.getElementById("current-password").value;
+    const password = document.getElementById("new-password").value;
+    const passwordConfirm = document.getElementById("confirm-password").value;
+    //await is used because we are changing the text content
+    await (0, _settings.updateSettings)({
+        passwordCurrent,
+        password,
+        passwordConfirm
+    }, "password");
+    document.getElementById("save-password-btn").textContent = "Save Password";
+    userPasswordForm.reset();
+//to reset the value coloumns to blank after update
+});
+if (createUserForm) createUserForm.addEventListener("submit", async (e)=>{
+    e.preventDefault();
+    document.getElementById("create-user-btn").textContent = "Creating User";
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const role = document.getElementById("role").value;
+    const gender = document.getElementById("gender").value;
+    const number = document.getElementById("number").value;
+    const password = document.getElementById("password").value;
+    const passwordConfirm = document.getElementById("confirm-password").value;
+    await (0, _settings.createUser)({
+        name,
+        email,
+        role,
+        gender,
+        number,
+        password,
+        passwordConfirm
+    });
+    document.getElementById("create-user-btn").textContent = "Create User";
+    createUserForm.reset();
+});
+if (updateUserForm) updateUserForm.addEventListener("submit", (e)=>{
+    e.preventDefault();
+    // const id = req.query.id
+    const form = new FormData();
+    form.append("name", document.getElementById("name").value);
+    form.append("email", document.getElementById("email").value);
+    form.append("gender", document.getElementById("gender").value);
+    form.append("number", document.getElementById("number").value);
+    const id = document.getElementById("id").value;
+    (0, _settings.updateUser)(form, id);
+});
+if (deleteUserForm) deleteUserForm.addEventListener("submit", (e)=>{
+    e.preventDefault();
+    const id = document.getElementById("id").value;
+    (0, _settings.deleteUser)(id);
+});
+var links = document.querySelectorAll("li");
+links.forEach(function(element) {
+    element.addEventListener("click", function(e) {
+        links.forEach(function(element) {
+            element.classList.remove("active");
+        });
+        this.classList.add("active");
+    });
+});
 
-},{"core-js/modules/esnext.array.last-index.js":"8cpHj","core-js/modules/esnext.array.last-item.js":"3KWUU","core-js/modules/esnext.composite-key.js":"3zsBr","core-js/modules/esnext.composite-symbol.js":"6P6E3","core-js/modules/esnext.map.delete-all.js":"84I4a","core-js/modules/esnext.map.every.js":"a0ie9","core-js/modules/esnext.map.filter.js":"8EHBg","core-js/modules/esnext.map.find.js":"kzunK","core-js/modules/esnext.map.find-key.js":"ipfV1","core-js/modules/esnext.map.from.js":"aMX7r","core-js/modules/esnext.map.group-by.js":"3AR1K","core-js/modules/esnext.map.includes.js":"3cPf4","core-js/modules/esnext.map.key-by.js":"czzPK","core-js/modules/esnext.map.key-of.js":"la1gU","core-js/modules/esnext.map.map-keys.js":"12CRV","core-js/modules/esnext.map.map-values.js":"fQehs","core-js/modules/esnext.map.merge.js":"5Qvm2","core-js/modules/esnext.map.of.js":"3WfcG","core-js/modules/esnext.map.reduce.js":"8ampn","core-js/modules/esnext.map.some.js":"eVX7K","core-js/modules/esnext.map.update.js":"agmCJ","core-js/modules/esnext.math.clamp.js":"fVCxt","core-js/modules/esnext.math.deg-per-rad.js":"16Ig2","core-js/modules/esnext.math.degrees.js":"lAovk","core-js/modules/esnext.math.fscale.js":"k2b33","core-js/modules/esnext.math.iaddh.js":"3rdHO","core-js/modules/esnext.math.imulh.js":"8UDpO","core-js/modules/esnext.math.isubh.js":"hHlFR","core-js/modules/esnext.math.rad-per-deg.js":"d0sq8","core-js/modules/esnext.math.radians.js":"4O5p8","core-js/modules/esnext.math.scale.js":"7eJRv","core-js/modules/esnext.math.seeded-prng.js":"avTaO","core-js/modules/esnext.math.signbit.js":"cwFfw","core-js/modules/esnext.math.umulh.js":"29loa","core-js/modules/esnext.number.from-string.js":"3xbh3","core-js/modules/esnext.observable.js":"eeV02","core-js/modules/esnext.promise.try.js":"9Mfk9","core-js/modules/esnext.reflect.define-metadata.js":"hNtw3","core-js/modules/esnext.reflect.delete-metadata.js":"gLTQ0","core-js/modules/esnext.reflect.get-metadata.js":"4ocs1","core-js/modules/esnext.reflect.get-metadata-keys.js":"c4lFr","core-js/modules/esnext.reflect.get-own-metadata.js":"92uop","core-js/modules/esnext.reflect.get-own-metadata-keys.js":"1tHok","core-js/modules/esnext.reflect.has-metadata.js":"cVgdu","core-js/modules/esnext.reflect.has-own-metadata.js":"9crGj","core-js/modules/esnext.reflect.metadata.js":"aSvLp","core-js/modules/esnext.set.add-all.js":"7qoXf","core-js/modules/esnext.set.delete-all.js":"79fB3","core-js/modules/esnext.set.difference.js":"773AO","core-js/modules/esnext.set.every.js":"4X7Cu","core-js/modules/esnext.set.filter.js":"a8QMe","core-js/modules/esnext.set.find.js":"44hBz","core-js/modules/esnext.set.from.js":"fFjm0","core-js/modules/esnext.set.intersection.js":"5PUFy","core-js/modules/esnext.set.is-disjoint-from.js":"b3q3i","core-js/modules/esnext.set.is-subset-of.js":"5igXN","core-js/modules/esnext.set.is-superset-of.js":"1amm1","core-js/modules/esnext.set.join.js":"bMl6L","core-js/modules/esnext.set.map.js":"g65Jk","core-js/modules/esnext.set.of.js":"h11gG","core-js/modules/esnext.set.reduce.js":"gtD5C","core-js/modules/esnext.set.some.js":"aYdPy","core-js/modules/esnext.set.symmetric-difference.js":"lsopM","core-js/modules/esnext.set.union.js":"3nyPK","core-js/modules/esnext.string.at.js":"PgTGt","core-js/modules/esnext.string.code-points.js":"138n3","core-js/modules/esnext.symbol.dispose.js":"b9ez5","core-js/modules/esnext.symbol.observable.js":"bTlfI","core-js/modules/esnext.symbol.pattern-match.js":"dLSVv","core-js/modules/esnext.weak-map.delete-all.js":"jHykW","core-js/modules/esnext.weak-map.from.js":"hUBsF","core-js/modules/esnext.weak-map.of.js":"cBEF1","core-js/modules/esnext.weak-set.add-all.js":"aizkc","core-js/modules/esnext.weak-set.delete-all.js":"d5YOC","core-js/modules/esnext.weak-set.from.js":"upZfU","core-js/modules/esnext.weak-set.of.js":"CNJie","core-js/modules/web.immediate.js":"49tUX","regenerator-runtime/runtime":"dXNgZ","./alerts":"6Mcnf","./login":"7yHem"}],"8cpHj":[function(require,module,exports) {
+},{"core-js/modules/esnext.array.last-index.js":"8cpHj","core-js/modules/esnext.array.last-item.js":"3KWUU","core-js/modules/esnext.composite-key.js":"3zsBr","core-js/modules/esnext.composite-symbol.js":"6P6E3","core-js/modules/esnext.map.delete-all.js":"84I4a","core-js/modules/esnext.map.every.js":"a0ie9","core-js/modules/esnext.map.filter.js":"8EHBg","core-js/modules/esnext.map.find.js":"kzunK","core-js/modules/esnext.map.find-key.js":"ipfV1","core-js/modules/esnext.map.from.js":"aMX7r","core-js/modules/esnext.map.group-by.js":"3AR1K","core-js/modules/esnext.map.includes.js":"3cPf4","core-js/modules/esnext.map.key-by.js":"czzPK","core-js/modules/esnext.map.key-of.js":"la1gU","core-js/modules/esnext.map.map-keys.js":"12CRV","core-js/modules/esnext.map.map-values.js":"fQehs","core-js/modules/esnext.map.merge.js":"5Qvm2","core-js/modules/esnext.map.of.js":"3WfcG","core-js/modules/esnext.map.reduce.js":"8ampn","core-js/modules/esnext.map.some.js":"eVX7K","core-js/modules/esnext.map.update.js":"agmCJ","core-js/modules/esnext.math.clamp.js":"fVCxt","core-js/modules/esnext.math.deg-per-rad.js":"16Ig2","core-js/modules/esnext.math.degrees.js":"lAovk","core-js/modules/esnext.math.fscale.js":"k2b33","core-js/modules/esnext.math.iaddh.js":"3rdHO","core-js/modules/esnext.math.imulh.js":"8UDpO","core-js/modules/esnext.math.isubh.js":"hHlFR","core-js/modules/esnext.math.rad-per-deg.js":"d0sq8","core-js/modules/esnext.math.radians.js":"4O5p8","core-js/modules/esnext.math.scale.js":"7eJRv","core-js/modules/esnext.math.seeded-prng.js":"avTaO","core-js/modules/esnext.math.signbit.js":"cwFfw","core-js/modules/esnext.math.umulh.js":"29loa","core-js/modules/esnext.number.from-string.js":"3xbh3","core-js/modules/esnext.observable.js":"eeV02","core-js/modules/esnext.promise.try.js":"9Mfk9","core-js/modules/esnext.reflect.define-metadata.js":"hNtw3","core-js/modules/esnext.reflect.delete-metadata.js":"gLTQ0","core-js/modules/esnext.reflect.get-metadata.js":"4ocs1","core-js/modules/esnext.reflect.get-metadata-keys.js":"c4lFr","core-js/modules/esnext.reflect.get-own-metadata.js":"92uop","core-js/modules/esnext.reflect.get-own-metadata-keys.js":"1tHok","core-js/modules/esnext.reflect.has-metadata.js":"cVgdu","core-js/modules/esnext.reflect.has-own-metadata.js":"9crGj","core-js/modules/esnext.reflect.metadata.js":"aSvLp","core-js/modules/esnext.set.add-all.js":"7qoXf","core-js/modules/esnext.set.delete-all.js":"79fB3","core-js/modules/esnext.set.difference.js":"773AO","core-js/modules/esnext.set.every.js":"4X7Cu","core-js/modules/esnext.set.filter.js":"a8QMe","core-js/modules/esnext.set.find.js":"44hBz","core-js/modules/esnext.set.from.js":"fFjm0","core-js/modules/esnext.set.intersection.js":"5PUFy","core-js/modules/esnext.set.is-disjoint-from.js":"b3q3i","core-js/modules/esnext.set.is-subset-of.js":"5igXN","core-js/modules/esnext.set.is-superset-of.js":"1amm1","core-js/modules/esnext.set.join.js":"bMl6L","core-js/modules/esnext.set.map.js":"g65Jk","core-js/modules/esnext.set.of.js":"h11gG","core-js/modules/esnext.set.reduce.js":"gtD5C","core-js/modules/esnext.set.some.js":"aYdPy","core-js/modules/esnext.set.symmetric-difference.js":"lsopM","core-js/modules/esnext.set.union.js":"3nyPK","core-js/modules/esnext.string.at.js":"PgTGt","core-js/modules/esnext.string.code-points.js":"138n3","core-js/modules/esnext.symbol.dispose.js":"b9ez5","core-js/modules/esnext.symbol.observable.js":"bTlfI","core-js/modules/esnext.symbol.pattern-match.js":"dLSVv","core-js/modules/esnext.weak-map.delete-all.js":"jHykW","core-js/modules/esnext.weak-map.from.js":"hUBsF","core-js/modules/esnext.weak-map.of.js":"cBEF1","core-js/modules/esnext.weak-set.add-all.js":"aizkc","core-js/modules/esnext.weak-set.delete-all.js":"d5YOC","core-js/modules/esnext.weak-set.from.js":"upZfU","core-js/modules/esnext.weak-set.of.js":"CNJie","core-js/modules/web.immediate.js":"49tUX","regenerator-runtime/runtime":"dXNgZ","./alerts":"6Mcnf","./login":"7yHem","./settings":"fD8ms"}],"8cpHj":[function(require,module,exports) {
 "use strict";
 // TODO: Remove from `core-js@4`
 var DESCRIPTORS = require("73b5a71b9881a20f");
@@ -6776,10 +6857,10 @@ const hideAlert = ()=>{
     ;
 //above line is used to go to the parent element and remove that parent element's child
 };
-const showAlert = (type, msg, time = 7)=>{
+const showAlert = (type, msg, time = 5)=>{
     hideAlert() //to hide all alerts before a new alert is shown
     ;
-    const markup = `<div class="alert alert -${type}">${msg}</div>`;
+    const markup = `<div class="alert alert--${type}">${msg}</div>`;
     document.querySelector("body").insertAdjacentHTML("afterbegin", markup);
     window.setTimeout(hideAlert, time * 1000) //hide the new showAlert automatically after 7 seconds
     ;
@@ -6827,7 +6908,7 @@ const login = async (email, password)=>{
     try {
         const res = await (0, _axiosDefault.default)({
             method: "POST",
-            url: "http://127.0.0.1:3000/api/v1/users/login",
+            url: "http://127.0.0.1:5500/api/v1/users/login",
             data: {
                 email,
                 password
@@ -6850,7 +6931,9 @@ const logout = async ()=>{
             method: "GET",
             url: "/api/v1/users/logout"
         });
-        if (res.data.status === "success") location.reload(true);
+        if (res.data.status === "success") window.setTimeout(()=>{
+            location.assign("/");
+        }, 1500);
     } catch (err) {
         console.log(err.response) //if noo internet connection etc
         ;
@@ -11221,6 +11304,82 @@ Object.entries(HttpStatusCode).forEach(([key, value])=>{
 });
 exports.default = HttpStatusCode;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["14ixo","f2QDv"], "f2QDv", "parcelRequire0a69")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fD8ms":[function(require,module,exports) {
+//to update user's password by user and his/her password 
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "updateSettings", ()=>updateSettings);
+parcelHelpers.export(exports, "createUser", ()=>createUser);
+parcelHelpers.export(exports, "updateUser", ()=>updateUser);
+parcelHelpers.export(exports, "deleteUser", ()=>deleteUser);
+var _axios = require("axios");
+var _axiosDefault = parcelHelpers.interopDefault(_axios);
+var _alerts = require("./alerts");
+var _catchAsync = require("../../utils/catchAsync");
+var _catchAsyncDefault = parcelHelpers.interopDefault(_catchAsync);
+const updateSettings = async (data, type)=>{
+    try {
+        const url = type === "password" ? "http://127.0.0.1:5500/api/v1/users/updateMyPassword" : "http://127.0.0.1:5500/api/v1/users/updateMe";
+        const res = await (0, _axiosDefault.default)({
+            method: "PATCH",
+            // url: type === 'password' ? 'http://127.0.0.1:5500/api/v1/users/updateMyPassword' : 'http://127.0.0.1:5500/api/v1/users/updateMe',
+            url,
+            data
+        });
+        if (res.data.status == "success") (0, _alerts.showAlert)("success", `${type.toUpperCase()} updated successfully`);
+    } catch (err) {
+        console.log(err);
+        (0, _alerts.showAlert)("error", err.response.data.message);
+    }
+};
+const createUser = async (data)=>{
+    try {
+        const res = await (0, _axiosDefault.default)({
+            method: "POST",
+            url: "http://127.0.0.1:5500/api/v1/users/create-user",
+            data
+        });
+        if (res.data.status == "success") (0, _alerts.showAlert)("success", "User created successfully!");
+    } catch (err) {
+        (0, _alerts.showAlert)("error", err.response.data.message);
+    }
+};
+const updateUser = async (data, id)=>{
+    try {
+        const res = await (0, _axiosDefault.default)({
+            method: "PATCH",
+            url: `http://127.0.0.1:5500/api/v1/users/${id}`,
+            data
+        });
+        if (res.data.status == "success") (0, _alerts.showAlert)("success", "User updated successfully!");
+    // location.reload(true)
+    } catch (err) {
+        (0, _alerts.showAlert)("error", err.response.data.message);
+    }
+};
+const deleteUser = async (id)=>{
+    try {
+        const res = await (0, _axiosDefault.default)({
+            method: "DELETE",
+            url: `http://127.0.0.1:5500/api/v1/users/${id}`,
+            id
+        });
+        if (res.data.status == "success") (0, _alerts.showAlert)("success", "User deleted successfully");
+        window.setTimeout(()=>{
+            location.assign("/me");
+        }, 1000);
+    } catch (err) {
+        (0, _alerts.showAlert)("error", err.response.data.message);
+    }
+};
+
+},{"axios":"jo6P5","./alerts":"6Mcnf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../../utils/catchAsync":"luvJO"}],"luvJO":[function(require,module,exports) {
+module.exports = (fn)=>{
+    return (req, res, next)=>{
+        fn(req, res, next).catch(next);
+    };
+};
+
+},{}]},["14ixo","f2QDv"], "f2QDv", "parcelRequire0a69")
 
 //# sourceMappingURL=index.js.map

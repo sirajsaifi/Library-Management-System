@@ -45,15 +45,44 @@
                     <div class="card-header">
                         <img class="books-image" src="img/books/book-1.jpg" alt="Book-1">
                     </div>
-                    <div class="card-details">
-                        <div class="book-name"><b>Conceptual Chemistry V1</b></div>
-                        <b>Book Author</b>: Dr. S.K Jain <br>
-                        <b>Book Publisher</b>: S.Chand <br>
-                        <b>Book Pages</b>: 570 <br>
-                        <b>Book Price</b>: Rs. 825 <br>
+                    <div class="card-details-librarian">
+                        <label for="book-name">Book Name
+                        </label>
+                        <input class="book-container-input" type="text" id="book-name" name="book-name"
+                            value="Conceptual Chemistry V1">
+
+                        <label for="book-author">Book Author
+                        </label>
+                        <input class="book-container-input" type="text" id="book-author" name="book-author"
+                            value="Dr. S.K Jain">
+
+                        <label for="book-publisher">Book Publisher
+                        </label>
+                        <input class="book-container-input" type="text" id="book-publisher" name="book-publisher"
+                            value="S.Chand">
+
+                        <label for="book-pages">Book Pages
+                        </label>
+                        <input class="book-container-input" type="number" id="book-pages" name="book-pages" value="570">
+
+                        <label for="book-price">Book Price (Rs.)
+                        </label>
+                        <input class="book-container-input" type="number" id="book-price" name="book-price" value="825">
+
+                        <label for="book-availability">Availability
+                        </label>
+                        <select name="book-availability" id="book-availability">
+                            <option value="Available">Available</option>
+                            <option value="Unavailable">Unavailable</option>
+                        </select>
                     </div>
-                    <div class="card-footer">
-                        <span class="book-state">Available</span>
+                    <div class="card-footer-librarian">
+                        <div id="delete-book">
+                            Delete
+                        </div>
+                        <div id="update-book">
+                            Update
+                        </div>
                     </div>
                 </div>
 

@@ -1,0 +1,31 @@
+extends account
+
+block user-account
+    #user-account-content
+        #display-user-containers
+            each student in students
+                if (student.role === 'student')
+                    #user-container
+                        #user-container-header
+                            img#user-container-photo(src=`/img/users/${student.photo}`, alt=`${student.name} image`)
+                            input#name(type="text", value=`${student.name}`, name="name")
+                        #user-container-main
+                            #user-container-main-heading
+                                | Details
+                            label(for="email")
+                                | Email Address
+                            input#email.user-container-input(type="email", value=`${student.email}`, name="email")
+                            label(for="gender")
+                                | Gender
+                            input#gender.user-container-input(type="text", value=`${student.gender}`, name="gender")
+                            label(for="number")
+                                | Phone No.
+                            input#number.user-container-input(type="number", value=`${student.number}`, name="number")
+
+                        #user-container-footer
+                            a.upd-dlt-view-btn(href=`/update-user?id=${student._id}`)
+                                | Update
+                            a.upd-dlt-view-btn(href=`/delete-user?id=${student._id}`)
+                                | Delete
+                            a.upd-dlt-view-btn
+                                | Issues

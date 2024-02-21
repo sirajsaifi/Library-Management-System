@@ -1,0 +1,44 @@
+extends account 
+
+block user-account 
+        #user-account-content
+                .form-user-heading
+                        | Your Account Settings
+                form.form.form-user-data
+                        label(for="name")
+                                | Name
+                        input#name.form-user-data-input(type="text", value=`${user.name}`, name="name", required)
+                        label(for="email")
+                                | Email Address
+                        input#email.form-user-data-input(type="email", value=`${user.email}`, name="email", required)
+                        label(for="number")
+                                | Phone No.
+                        input#number.form-user-data-input(type="number", value=`${user.number}`, name="number", required)
+                        label(for="gender")
+                                | Gender
+                        input#gender.form-user-data-input(type="text", value=`${user.gender}`, name="gender", required)
+                        .user-photo-form
+                                img#form-user-data-photo(src=`img/users/${user.photo}`, alt='User Photo')
+                                input#photo.user-photo-upload(type="file", name="photo", accept="image/*")
+                                label(for="photo")
+                                        | Choose a new photo
+                        .settings-btn
+                                button#save-settings-btn.update-create-btn
+                                        | Save settings
+                hr
+                .form-user-heading
+                        | Password Settings
+                form.form.form-user-password
+                        label(for="current-password")
+                                | Current Password
+                        input#current-password.form-user-data-input(type="password", name="current-password", placeholder="********", required)
+                        label(for="new-password")
+                                | New Password
+                        input#new-password.form-user-data-input(type="password", name="new-password", placeholder="********", required)
+                        label(for="confirm-password")
+                                | Confirm Password
+                        input#confirm-password.form-user-data-input(type="password", name="confirm-password", placeholder="********", required)
+                        .settings-btn
+                                button#save-password-btn.update-create-btn
+                                        | Save password
+

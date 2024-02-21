@@ -8,7 +8,7 @@ export const login = async(email, password) => {
     try {
         const res = await axios({
             method: 'POST',
-            url : (process.env.NODE_ENV === 'production') ? '/api/v1/users/login' : 'http://127.0.0.1:3000/api/v1/users/login',
+            url : (process.env.NODE_ENV === 'production') ? '/api/v1/users/login' : 'http://127.0.0.1:5500/api/v1/users/login',
             data : {
                 email, password
             }
@@ -34,7 +34,11 @@ export const logout = async () => {
             url: '/api/v1/users/logout'
         })
 
-        if (res.data.status === 'success') location.reload(true)
+        if (res.data.status === 'success') {
+            window.setTimeout(() => {
+                location.assign('/')
+            }, 1500)
+        }
     }
     catch(err) {
         console.log(err.response)   //if noo internet connection etc

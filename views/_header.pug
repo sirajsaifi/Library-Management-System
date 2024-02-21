@@ -1,13 +1,13 @@
 header
     nav
-        #nav-user-right
+        #nav-user-left
             #nav-book
                 a.navtext(href="/") ALL BOOKS
             #nav-logo
                 img.nav-logo-img(src="img/favicon-2.png", alt="Logo")
-        #nav-user-left
+        #nav-user-right
             if user
-                a.nav-logout-button(href="#") LOGOUT
+                button.nav-logout-button LOGOUT
                 a.nav-user-img(href="/me")
                     img#nav-user-img(src = `/img/users/${user.photo}` alt=`Photo of ${user.name}`)
             else 

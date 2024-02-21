@@ -1,12 +1,15 @@
 [
   {
-    "_id": "651c2beef0d2cf3cb19119b0",
-    "name": "Jonas",
-    "email": "jonas@gmail.com",
-    "photo": "user-1.jpg",
-    "role": "librarian",
-    "password": "$2a$12$P/HqhBhynn/a/Bt9UtSF3ORMQge3Hi7ojkA6K0fX5rEmfbvN.fIDu",
-    "active": true
+    "_id": "651c32fdf0d2cf3cb19119b4",
+    "name": "Sophie Louise Hart",
+    "email": "sophie@example.com",
+    "photo": "user-3.jpg",
+    "role": "staff",
+    "gender": "Female",
+    "number": "8502769445",
+    "password": "$2a$12$edqmG8.qC2HM29oBXs8u8uB2s8ODzilbfRHYoF44zttSM.X1iFBO.",
+    "active": true,
+    "__v": 0
   },
   {
     "_id": "651c32adf0d2cf3cb19119b2",
@@ -14,17 +17,11 @@
     "email": "loulou@example.com",
     "photo": "user-2.jpg",
     "role": "staff",
-    "password": "$2a$12$jTNbNEoqRE.mRA.ReMXO1eFqdg8co6LGXCbdW5KIcCRLaRu7vD1Rm",
-    "active": true
-  },
-  {
-    "_id": "651c32fdf0d2cf3cb19119b4",
-    "name": "Sophie Louise Hart",
-    "email": "sophie@example.com",
-    "photo": "user-3.jpg",
-    "role": "staff",
-    "password": "$2a$12$CprmxSnPVBbrfQ.DXAJ.4OE6vUaIutIVm05GCV.zBKW6UUUuFiaHK",
-    "active": true
+    "gender": "Female",
+    "number": "7043091735",
+    "password": "$2a$12$81p3xQGA9MmddqlYHYxuFeIQs3kXOasEP5U9Kwcwk.8ciEeFoJIxO",
+    "active": true,
+    "__v": 0
   },
   {
     "_id": "651c3332f0d2cf3cb19119b6",
@@ -32,17 +29,11 @@
     "email": "ayls@example.com",
     "photo": "user-4.jpg",
     "role": "staff",
-    "password": "$2a$12$O75ij.tvm5UbilI7oLqZEOghGYClDW2/cXsGJQffukUGLc8BuoPEK",
-    "active": true
-  },
-  {
-    "_id": "651c335cf0d2cf3cb19119b8",
-    "name": "Leo Gillespie",
-    "email": "leo@example.com",
-    "photo": "user-5.jpg",
-    "role": "staff",
-    "password": "$2a$12$ERL2xGm210vPDtNDKRILLuVgZ11Si1kMyjPw2ZbFmZfuwFKEKDv4O",
-    "active": true
+    "gender": "Female",
+    "number": "7709125118",
+    "password": "$2a$12$SQS2to6ZSiO3apyIAKRpFewyWQV0xmAfvF09uQlEthL5L0ryjhOZG",
+    "active": true,
+    "__v": 0
   },
   {
     "_id": "651c341af0d2cf3cb19119ba",
@@ -50,8 +41,11 @@
     "email": "jennifer@example.com",
     "photo": "user-6.jpg",
     "role": "staff",
-    "password": "$2a$12$Fq4FoUYq2VJieYXZfW37BuzVAa6IMkU0e2r7LrN7dPijcistXbOh6",
-    "active": true
+    "gender": "Female",
+    "number": "8094183627",
+    "password": "$2a$12$vZO/W4GzDcK6k1eEOB2k7OsqB858BPNAJZTftI9MozulMUPL6s6KG",
+    "active": true,
+    "__v": 0
   },
   {
     "_id": "651c343cf0d2cf3cb19119bc",
@@ -59,62 +53,11 @@
     "email": "kate@example.com",
     "photo": "user-7.jpg",
     "role": "staff",
-    "password": "$2a$12$rHXMy3vDmMeBcaq90XhRHerpf3BRGrPJ6l2PonEBdVY2ZoAPcP3PS",
-    "active": true
-  },
-  {
-    "_id": "651c3516f0d2cf3cb19119be",
-    "name": "Eliana Stout",
-    "email": "eliana@example.com",
-    "photo": "user-8.jpg",
-    "role": "staff",
-    "password": "$2a$12$06vPKAXkdXBp4b2ATcWJcem9bWGcpwtv0Ma.m3G9UvmbMoYhz3bIe",
-    "active": true
-  },
-  {
-    "_id": "651c3541f0d2cf3cb19119c0",
-    "name": "Cristian Vega",
-    "email": "chris@example.com",
-    "photo": "user-9.jpg",
-    "role": "student",
-    "password": "$2a$12$wROeLJZ65iUmQbjpGp3z3OoxWoYVbTe1GfxEAF2geKvQAq1bgN1fS",
-    "active": true
-  },
-  {
-    "_id": "651c3558f0d2cf3cb19119c2",
-    "name": "Steve T. Scaife",
-    "email": "steve@example.com",
-    "photo": "user-10.jpg",
-    "role": "student",
-    "password": "$2a$12$u7v08H4D2H.ee4BRqO7NUuxdZ8YFN567bu4lCxWBvchogvumWSB12",
-    "active": true
-  },
-  {
-    "_id": "651c357af0d2cf3cb19119c4",
-    "name": "Aarav Lynn",
-    "email": "aarav@example.com",
-    "photo": "user-11.jpg",
-    "role": "student",
-    "password": "$2a$12$4yrVaFLcZuas1i2UV1XlQusk1jsz8Awjv0KlfJW89hadp0fRX7FzG",
-    "active": true
-  },
-  {
-    "_id": "651c359cf0d2cf3cb19119c6",
-    "name": "Miyah Myles",
-    "email": "miyah@example.com",
-    "photo": "user-12.jpg",
-    "role": "student",
-    "password": "$2a$12$b/8pPQ6/H8Ynu3RRV/7s2e6rJfueOtlcFa82AdypLm/9xlWDBaIbe",
-    "active": true
-  },
-  {
-    "_id": "651c35d5f0d2cf3cb19119c8",
-    "name": "Ben Hadley",
-    "email": "ben@example.com",
-    "photo": "user-13.jpg",
-    "role": "student",
-    "password": "$2a$12$zndfRTfGEDl5JZfoaYMKAuFVH9DhMdiGu9Kth4gRfglHtLvPgAjqa",
-    "active": true
+    "gender": "Female",
+    "number": "8914357300",
+    "password": "$2a$12$71ZdPKUhY676Pi4gP7hkse3t5rdmwSffQzX40eLIegEbi6cqnNxhu",
+    "active": true,
+    "__v": 0
   },
   {
     "_id": "651c35ecf0d2cf3cb19119ca",
@@ -122,17 +65,11 @@
     "email": "laura@example.com",
     "photo": "user-14.jpg",
     "role": "student",
-    "password": "$2a$12$LbDG7hDVWbVy2cH9fPlWj.qGQq5jE.kPYC397C.5lnVuQ/gbzfhKC",
-    "active": true
-  },
-  {
-    "_id": "651c3604f0d2cf3cb19119cc",
-    "name": "Max Smith",
-    "email": "max@example.com",
-    "photo": "user-15.jpg",
-    "role": "student",
-    "password": "$2a$12$CtUd0uI.RM4IEv7Ih2XS8.1MgN2NyhKDS/EQT3iP2mmkeeqRNtGtW",
-    "active": true
+    "gender": "Female",
+    "number": "9497475012",
+    "password": "$2a$12$mo5u13tub/YMQaR0vjPneetH9.i5GbE2LwP.ZJslhCzXwNyEl96.a",
+    "active": true,
+    "__v": 0
   },
   {
     "_id": "651c361af0d2cf3cb19119ce",
@@ -140,8 +77,11 @@
     "email": "isabel@example.com",
     "photo": "user-16.jpg",
     "role": "student",
-    "password": "$2a$12$HBqGQa3u23kKyMkewb/skOupSjrY6D2jNs4giUwP/a6tyOeb3gdHG",
-    "active": true
+    "gender": "Female",
+    "number": "8558683170",
+    "password": "$2a$12$F9Xr4YNYQbf26lEjLcxVV.go8OMPKHrR/IRZY1grsEWTBW5LLizoy",
+    "active": true,
+    "__v": 0
   },
   {
     "_id": "651c3632f0d2cf3cb19119d0",
@@ -149,8 +89,71 @@
     "email": "alex@example.com",
     "photo": "user-17.jpg",
     "role": "student",
-    "password": "$2a$12$AIgGeZNKu.PipEfG9Fa2fePSFDCMM4eJVPdEjm4QoUMEmXTzOQtT6",
-    "active": true
+    "gender": "Male",
+    "number": "9622054342",
+    "password": "$2a$12$DvzV4Rs2eHIUay4acEYlHunN89b/BS9ePJV4nhgJwYajlGVU0Bqom",
+    "active": true,
+    "__v": 0
+  },
+  {
+    "_id": "651c335cf0d2cf3cb19119b8",
+    "name": "Leo Gillespie",
+    "email": "leo@example.com",
+    "photo": "user-5.jpg",
+    "role": "staff",
+    "gender": "Male",
+    "number": "8134670921",
+    "password": "$2a$12$9QdvgJe1kdQxHo0azcmxfOYNazoFW.fbSSNyQDgj7XKn8GfZAfcCK",
+    "active": true,
+    "__v": 0
+  },
+  {
+    "_id": "65c77c15278d0d9285087c7e",
+    "name": "Jonas S.",
+    "email": "jonas2@example.com",
+    "photo": "user-1.jpg",
+    "role": "librarian",
+    "gender": "Male",
+    "number": "7081349236",
+    "password": "$2a$12$dA9sduR2YvBq7rPaN8GN2OzkwBfU9Y9wwuWSh0Tf8PYbPWEKDuvMG",
+    "active": true,
+    "__v": 0 
+  },
+  {
+    "_id": "651c3516f0d2cf3cb19119be",
+    "name": "Eliana Stout",
+    "email": "eliana@example.com",
+    "photo": "user-8.jpg",
+    "role": "staff",
+    "gender": "Female",
+    "number": "8105659932",
+    "password": "$2a$12$I7WwFdUP3e8zokb8QQvCdOsvlIJLW4TTgv/HqVZI6BDwVYAB/kk1O",
+    "active": true,
+    "__v": 0
+  },
+  {
+    "_id": "651c3541f0d2cf3cb19119c0",
+    "name": "Cristian Vega",
+    "email": "chris@example.com",
+    "photo": "user-9.jpg",
+    "role": "student",
+    "gender": "Male",
+    "number": "9765226615",
+    "password": "$2a$12$A.YrkIH7o0vxhBn42KWHm.I2tAN6L6FdEla3f..Vupm5NY71Ac3VK",
+    "active": true,
+    "__v": 0
+  },
+  {
+    "_id": "651c3604f0d2cf3cb19119cc",
+    "name": "Max Smith",
+    "email": "max@example.com",
+    "photo": "user-15.jpg",
+    "role": "student",
+    "gender": "Male",
+    "number": "8681322059",
+    "password": "$2a$12$TRnCitCXnSImDht8mAQlfOZomk5z4u1.Hx0NlRMLAvcMqv1YLvND.",
+    "active": true,
+    "__v": 0
   },
   {
     "_id": "651c3646f0d2cf3cb19119d2",
@@ -158,8 +161,23 @@
     "email": "edu@example.com",
     "photo": "user-18.jpg",
     "role": "student",
-    "password": "$2a$12$5TJXLs5vHc1E1nyt2ssuK.OYhpsUyoXtX92pcCjWXje6H/jiVU1vm",
-    "active": true
+    "gender": "Male",
+    "number": "8819709629",
+    "password": "$2a$12$p..Q85ScgQ7FwhpNpRjBZ.HHvXCW5MfUyi/1dhsDYThweRXPgsQMe",
+    "active": true,
+    "__v": 0
+  },
+  {
+    "_id": "651c357af0d2cf3cb19119c4",
+    "name": "Aarav Lynn",
+    "email": "aarav@example.com",
+    "photo": "user-11.jpg",
+    "role": "student",
+    "gender": "Male",
+    "number": "8990491801",
+    "password": "$2a$12$GQtNH/Ty.YmVu2bgGNvphuJqarfBWoIZn1eFXEy2pVlefw5pEJWFm",
+    "active": true,
+    "__v": 0
   },
   {
     "_id": "651c365cf0d2cf3cb19119d4",
@@ -167,8 +185,23 @@
     "email": "john@example.com",
     "photo": "user-19.jpg",
     "role": "student",
-    "password": "$2a$12$jzOgdmoaWkXg.9ntrPsopeBaDlpdZj86FbGQwEEvA/rWeMQFFC.nW",
-    "active": true
+    "gender": "Male",
+    "number": "9350743217",
+    "password": "$2a$12$wFu7OTjzuZfAYDI97vSq3OuOFq834NIUvZLE4idxh/PeT6rexRPUu",
+    "active": true,
+    "__v": 0
+  },
+  {
+    "_id": "651c3558f0d2cf3cb19119c2",
+    "name": "Steve T. Scaife",
+    "email": "steve@example.com",
+    "photo": "user-10.jpg",
+    "role": "student",
+    "gender": "Female",
+    "number": "8266185600",
+    "password": "$2a$12$GVnQp86YozGCTUq5a6jvzeQmzoYGIZYBG4nTpERO7Mv9K7iXQqPAO",
+    "active": true,
+    "__v": 0
   },
   {
     "_id": "651c368ff0d2cf3cb19119d6",
@@ -176,7 +209,34 @@
     "email": "lisa@example.com",
     "photo": "user-20.jpg",
     "role": "student",
-    "password": "$2a$12$AmYf5IWVx3kS.UKQbvBB9uUUfv4Ius5NTKlPyZun1onsQK1GXxV6G",
-    "active": true
+    "gender": "Female",
+    "number": "9956133433",
+    "password": "$2a$12$HORSSrbbW6hllwmfQyI0ueAwdgVNDNaz8epXdjyPbu42WwtY5dism",
+    "active": true,
+    "__v": 0
+  },
+  {
+    "_id": "651c35d5f0d2cf3cb19119c8",
+    "name": "Ben Hadley",
+    "email": "ben@example.com",
+    "photo": "user-13.jpg",
+    "role": "student",
+    "gender": "Male",
+    "number": "8463958086",
+    "password": "$2a$12$I3J29CV1T6kuu2BpIMQJIO.ZLrkv0spf0JRnRh5E1BFVF7ttXnUjK",
+    "active": true,
+    "__v": 0
+  },
+  {
+    "_id": "651c359cf0d2cf3cb19119c6",
+    "name": "Miyah Myles",
+    "email": "miyah@example.com",
+    "photo": "user-12.jpg",
+    "role": "student",
+    "gender": "Female",
+    "number": "8912376029",
+    "password": "$2a$12$x1VkhuIVfXWzRDVjqMMcEeL9Zdw9ccRW7Lt8otyhkny5GsWEjEGbW",
+    "active": true,
+    "__v": 0
   }
 ]

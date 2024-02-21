@@ -6,6 +6,8 @@ const catchAsync = require('../utils/catchAsync')
 const AppError = require('../utils/appError')
 const User = require('../models/userModel')
 const Email = require('../utils/email')
+// import { showAlert } from '../public/js/alerts'
+
 
 const signToken = id => {
     return jwt.sign({id}, process.env.JWT_SECRET, {
@@ -45,12 +47,19 @@ const createSendToken = (user, statusCode, req, res) => {
 
 
 exports.signup = catchAsync(async(req, res, next) => {
+    // const existingUser = await User.findOne({email: Email})
+
+    // if (existingUser) {
+    //     showAlert('error', 'User with this email already exists')
+    // }
+    // else {
     const newUser = await User.create(req.body)
     const url = `${req.protocol}://${req.get('host')}/me`
     console.log(url)
+    // }
 
     // new Email(newUser, url).sendWelcome()
-    createSendToken(newUser, 201, req, res)
+    // createSendToken(newUser, 201, req, res)
 })
 
 
@@ -148,11 +157,11 @@ exports.isLoggedIn =async(req, res, next) => {
             //each pug template will have the access to res.locals
             //res.local.user is available only to the views rendered during request/response cycle
             //so in oredr to show/hide the login/logout button, the -header.pug needs to know if user is logged in or not, and the way to  do that is by accessing local.user
-            req.locals.user = currentUser   //making user accessible to our pug templates...there will be a varible user in each template as user is written after locals
+            res.locals.user = currentUser   //making user accessible to our pug templates...there will be a varible user in each template as user is written after locals
             return next()
 
         } catch (err){
-            return next()
+            return next()   //stops the execution immediately...jump out the callback immediately
         }
     }
     next()  //if there is no cookie then next middleware will be called

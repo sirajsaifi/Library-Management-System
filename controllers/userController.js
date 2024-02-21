@@ -1,8 +1,45 @@
+const multer = require('multer')    //used for uploading image
+const sharp = require('sharp')  //to resize photo
+
 const User = require('../models/userModel')
 const factory = require('../controllers/handlerFactory')
 const catchAsync = require('../utils/catchAsync')
 const AppError = require('../utils/appError')
 
+
+//use this if the image processing is needed eg.image resizing
+const multerStorage = multer.memoryStorage()
+
+//checks whether the uploaded file is image if so then True is passed in callback function else False along with error
+//can be used to check csv files...works for all kind of files
+const multerFilter = (req, file, cb) => {
+    if (file.mimetype.startsWith('image')) {
+        cb(null, true)
+    } else {
+        cb(new AppError('Not an image. Please upload only images.'), false)
+    }
+}
+
+const upload = multer({ //destination where to save the user's photo
+    storage: multerStorage,
+    fileFilter: multerFilter
+})
+
+exports.uploadUserPhoto = upload.single('photo')    //.single is because only a single image is going to be uploaded
+
+exports.resizeUserPhoto = catchAsync(async (req, res, next) => {
+    if (!req.file) return next()    //if no request for upload then go to next middleware
+
+    req.file.filename = `user-${req.user.id}-${Date.now()}.jpeg`
+    //width(500) and height(500)
+    await sharp(req.file.buffer)
+        .resize(500, 500)
+        .toFormat('jpeg')
+        .jpeg({ quality: 90 }) //90%
+        .toFile(`public/img/users/${req.file.filename}`)
+
+    next()
+})
 
 const filterObj = (obj, ...allowedFields) => {
     const newObj = {}
@@ -26,7 +63,7 @@ exports.updateMe = catchAsync(async(req, res, next) => {
     }
 
     //2) filter out unwanted fields name that are not allowed to be updated like roles
-    const filteredBody = filterObj(req.body, 'name', 'email')
+    const filteredBody = filterObj(req.body, 'name', 'email', 'gender', 'number')
 
     if (req.file) filteredBody.photo = req.file.filename    //adding photo property to filteredBody
 

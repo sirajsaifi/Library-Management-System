@@ -1,0 +1,29 @@
+extends account
+
+block user-account
+    #user-account-content
+        #display-user-containers
+            each staff in staffs
+                if (staff.role === 'staff')
+                    form#get-user-form
+                        #user-container
+                            #user-container-header
+                                img#user-container-photo(src=`/img/users/${staff.photo}`, alt=`${staff.name} image`)
+                                input#name(type="text", value=`${staff.name}`, name="name")
+                            #user-container-main
+                                #user-container-main-heading
+                                    | Details
+                                label(for="email")
+                                    | Email Address
+                                input#email.user-container-input(type="email", value=`${staff.email}`, name="email")
+                                label(for="gender")
+                                    | Gender
+                                input#gender.user-container-input(type="text", value=`${staff.gender}`, name="gender")
+                                label(for="number")
+                                    | Phone No.
+                                input#number.user-container-input(type="number", value=`${staff.number}`, name="number")
+                            #user-container-footer
+                                a.upd-dlt-btn(href=`/update-user?id=${staff._id}`)
+                                    | Update
+                                a.upd-dlt-btn(href=`/delete-user?id=${staff._id}`)
+                                    | Delete

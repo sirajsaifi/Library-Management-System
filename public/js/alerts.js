@@ -10,9 +10,9 @@ export const hideAlert = () => {
 }
 
 //type is 'success' or 'error'
-export const showAlert = (type, msg, time = 7) => {     //time = 5 is default and can be overwritten by the user
+export const showAlert = (type, msg, time = 5) => {     //time = 5 is default and can be overwritten by the user
     hideAlert()     //to hide all alerts before a new alert is shown
-    const markup = `<div class="alert alert -${type}">${msg}</div>`
+    const markup = `<div class="alert alert--${type}">${msg}</div>`
     document.querySelector('body').insertAdjacentHTML('afterbegin', markup)
     window.setTimeout(hideAlert, time * 1000)       //hide the new showAlert automatically after 7 seconds
 }

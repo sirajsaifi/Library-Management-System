@@ -1,10 +1,10 @@
 extends base
 
 mixin navItem(link, text, icon, active)
-    li(class = `${active} ? 'side-nav--active' : ''`)
+    li(class = `${active ? 'active' : ''}`)
         a(href=`${link}`) 
-            img.navItems-icons(src=`img/icons/${icon}.jpg`, alt=`${icon}`)
             | #{text}
+            img.navItems-icons(src=`img/icons/${icon}.png`, alt=`${icon}`)
 
 block content 
     #main-content 
@@ -12,18 +12,19 @@ block content
             #user-account-menu
                 if (user.role === 'staff')
                     ul.side-nav 
-                        +navItem('#', 'Settings', 'settings', active)
+                        +navItem('/me', 'Settings', 'settings', true)
 
                 else if (user.role === 'student')
                     ul.side-nav 
-                        +navItem('#', 'Settings', 'settings', active)
-                        +navItem('#', 'Books Issued', 'books-issued')
+                        +navItem('/me', 'Settings', 'settings', true)
+                        +navItem('#', 'My Books', 'books')
 
                 else if (user.role === 'librarian')
                     ul.side-nav 
-                        +navItem('#', 'Settings', 'settings', active)
-                        +navItem('#', 'Students', 'students')
-                        +navItem('#', 'Staff', 'staff')
+                        +navItem('/me', 'Settings', 'settings', true)
+                        +navItem('/create-user', 'Create User', 'create-user')
+                        +navItem('/students', 'Students', 'students')
+                        +navItem('/staff', 'Staff', 'staff')
                         +navItem('#', 'Books', 'books')
 
-            #user-account-content 
+            block user-account

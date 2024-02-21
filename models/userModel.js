@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        require: [true, 'Please provide a E-mail.'],
+        require: [true, 'Please provide an E-mail.'],
         unique: true,
         lowercase: true,
         validate: [validator.isEmail, 'Please provide a valid E-mail.']
@@ -24,6 +24,14 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ['librarian', 'staff', 'student'],
         default: 'student'
+    },
+    gender: {
+        type: String,
+        require: [true, 'Please provide a gender.']
+    },
+    number: {
+        type: Number,
+        require: [true, 'Please provide a phone number.']
     },
     password: {
         type: String,
@@ -81,6 +89,16 @@ userSchema.pre(/^find/, function(next){
         active: { $ne: false }
     })
     next()
+})
+
+
+//for custom error message if email is not unique...this will work for all the field which are unique so be careful
+userSchema.post('save', function(error, doc, next) {
+    if (error.name === 'MongoServerError' && error.code === 11000) {
+        next(new Error('User with this email already exists.'))
+    } else {
+        next(error)
+    }
 })
 
 

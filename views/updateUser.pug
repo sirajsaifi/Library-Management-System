@@ -1,0 +1,29 @@
+extends base
+
+block content
+    #main-content
+        #update-user-container-form
+            form#update-user-form
+                #user-container-update
+                    #user-container-header
+                        img#user-container-photo(src=`/img/users/${updateUserForm.photo}`, alt=`${updateUserForm.name} image`)
+                        input#name(type="text", value=`${updateUserForm.name}`, name="name")
+                    #user-container-main
+                        #user-container-main-heading
+                            | Details
+                        label(for="id")
+                            | Id
+                        input#id.user-container-input(type="text", value=`${updateUserForm._id}`, name="id", disabled)
+                        label(for="email")
+                            | Email Address
+                        input#email.user-container-input(type="email", value=`${updateUserForm.email}`, name="email")
+                        label(for="gender")
+                            | Gender
+                        input#gender.user-container-input(type="text", value=`${updateUserForm.gender}`, name="gender")
+                        label(for="number")
+                            | Phone No.
+                        input#number.user-container-input(type="number", value=`${updateUserForm.number}`, name="number")
+
+                    #user-container-footer
+                        button#update-user
+                            | Update
