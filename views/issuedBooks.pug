@@ -1,0 +1,22 @@
+extends account
+
+mixin issueBook(id, labelName, type, name, value, disabled=false)
+    label(for=`${id}`) 
+        | #{labelName}
+    input.book-container-input(id=`${id}` , type=`${type}`, name=`${name}`, value=`${value}`, disabled=disabled)
+
+block user-account
+    #user-account-content
+        #display-user-containers
+            each issuedBook in booksIssued
+                #book-issue-container
+                    #book-issue-container-main
+                        +issueBook("book-issue-name", "Book Name", "text", "book-issue-name", `${issuedBook.book}`, true)
+                        +issueBook("book-issue-student-email", "Issued To", "text", "book-issue-student-email", `${issuedBook.userEmail}`, true)
+                        +issueBook("issued-book-status", "Status", "text", "issued-book-status", `${issuedBook.status}`, true)
+                        +issueBook("book-issued-on", "Issued On", "text", "book-issued-on", `${issuedBook.issuedAt}`, true)
+                        +issueBook("book-issued-return-date", "Return Date","text", "book-issued-return-date", `${issuedBook.returnDate}`, true)
+                        +issueBook("book-issued-returned-on", "Returned On","text", "book-issued-returned-on", `${issuedBook.returnedOn}`, true)
+                    #book-issue-container-footer
+                        a#return-book(href=`/return-book?id=${issuedBook._id}`)
+                            | Return

@@ -104,7 +104,9 @@ app.use('/api/v1/issueBooks', issueRouter)
 //     })
 // })
 
-//for undefined routes...this error will be shown 
+//for undefined routes...this error will be shown...undefined means which are not defined above
+//like '/', '/api/v1/books', '/api/v1/users', '/api/v1/issueBooks' are defined routes...
+//undefined will be like '/api/v1/hello' or anything which is not defined above
 app.all('*', (req, res, next) => {  //'*' means for all
     next(new AppError(`Can't find ${req.originalUrl} on this server`, 404))
 })

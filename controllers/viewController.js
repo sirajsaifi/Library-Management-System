@@ -23,14 +23,6 @@ exports.getLoginForm = catchAsync(async (req, res) => {
         title: 'Log into your account'
     })
 })
-// exports.getLoginForm = catchAsync(async(req, res) => {
-//     res.status(200).set(
-//         'Content-Security-Policy',
-//         "script-src 'self' https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js 'unsafe-inline' 'unsafe-eval';"
-//     ).render('login', {
-//         title: 'Log into your account'
-//     })
-// })
 
 exports.getMyAccount = (req, res) => {
     res.status(200).render('settings', {
@@ -80,7 +72,6 @@ exports.getStaff = catchAsync(async(req, res) => {
 exports.updateUser = catchAsync(async(req, res) => {
     const id = await req.query.id
     const updateUserForm = await User.findById(id)
-    // const updateUsers = await User.findById({params: {id : req.query.id }})
 
     res.status(200).render('updateUser', {
         title: 'Update User',
@@ -91,10 +82,93 @@ exports.updateUser = catchAsync(async(req, res) => {
 exports.deleteUser = catchAsync(async(req, res) => {
     const id = await req.query.id
     const deleteUserForm = await User.findById(id)
-    // const updateUsers = await User.findById({params: {id : req.query.id }})
 
     res.status(200).render('deleteUser', {
         title: 'Delete User',
         deleteUserForm
     })
 })
+
+exports.createBook = (req, res) => {
+    res.status(200).render('createBook', {
+        title: 'Create Book'
+    })
+}
+
+exports.getBooks = catchAsync(async(req, res) => {
+    const books = await Book.find()
+
+    res.status(200).render('books', {
+        title: 'Books',
+        books
+    })
+})
+
+exports.updateBook = catchAsync(async(req, res) => {
+    const id = req.query.id
+
+    const updateBook = await Book.findById(id)
+    res.status(200).render('updateBook', {
+        title: 'Update Book',
+        updateBook
+    })
+})
+
+exports.deleteBook = catchAsync(async(req, res) => {
+    const id = req.query.id
+
+    const deleteBook = await Book.findById(id)
+    res.status(200).render('deleteBook', {
+        title: 'Delete Book',
+        deleteBook
+    })
+})
+
+exports.issueBook = catchAsync(async(req, res) => {
+    const id = req.query.id
+
+    const issueBook = await Book.findById(id)
+    res.status(200).render('issueBook', {
+        title: 'Issue Book',
+        issueBook
+    })
+})
+
+exports.booksIssued = catchAsync(async(req, res) => {
+    const booksIssued = await IssueBook.find()
+
+    res.status(200).render('issuedBooks', {
+        title: 'Issued Books',
+        booksIssued
+    })
+})
+
+exports.returnBook = catchAsync(async(req, res) => {
+    const id = req.query.id
+    const returnBook = await IssueBook.findById(id)
+
+    res.status(200).render('returnBook', {
+        title: 'Return Book',
+        returnBook
+    })
+})
+
+exports.booksIssuedStudent = catchAsync(async(req, res) => {
+    const id = req.query.id
+    const issues = await IssueBook.find({user : id})
+
+    res.status(200).render('bookIssuedStudent',{
+        title: 'Issues',
+        issues
+    } )
+})
+
+exports.myBooks = catchAsync(async(req, res) => {
+    const issues = await IssueBook.find({user : req.user.id})
+
+    res.status(200).render('bookIssuedStudent',{
+        title: 'Issues',
+        issues
+    } )
+})
+

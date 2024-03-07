@@ -1,0 +1,24 @@
+extends base
+
+mixin returnBook(id, labelName, type, name, value, disabled=false)
+    label(for=`${id}`) 
+        | #{labelName}
+    input.book-container-input(id=`${id}` , type=`${type}`, name=`${name}`, value=`${value}`, disabled=disabled)
+
+block content
+    #main-content
+        #update-user-container-form 
+            form#return-book-form
+                #book-return-container
+                    #book-return-container-main
+                        +returnBook('book-return-id', 'Issue Id', 'text', 'book-return-id', `${returnBook._id}`, true)
+                        +returnBook('book-return-name', 'Book Name', 'text', 'book-return-name', `${returnBook.book}`, true)
+                        +returnBook('book-return-student-email', "Student's Email", 'text', 'book-return-student-email', `${returnBook.userEmail}`, true)
+                        label(for="book-return-status")
+                            | Status
+                        select#book-return-status(name="book-return-status") 
+                            option(value="Not-Returned") Not Returned  
+                            option(value="Returned") Returned
+                    #book-return-container-footer
+                        button#return-book
+                            | Return

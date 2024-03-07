@@ -8,24 +8,37 @@ import catchAsync from '../../utils/catchAsync'
 //node js uses common js to implement modules but since ES6 there is modules in javascript as well
 //ES6 uses export/import syntax
 
-//type is either 'password' or 'data'
-export const updateSettings = async(data, type) => {
-    try {
-        const url = type === 'password'? 'http://127.0.0.1:5500/api/v1/users/updateMyPassword' : 'http://127.0.0.1:5500/api/v1/users/updateMe'
-
-        const res = await axios ({
+export const updateAccount = async(data) => {
+    try{
+        const res = await axios({
             method: 'PATCH',
-            // url: type === 'password' ? 'http://127.0.0.1:5500/api/v1/users/updateMyPassword' : 'http://127.0.0.1:5500/api/v1/users/updateMe',
-            url,
+            url: (process.env.NODE_ENV === 'production') ? 'api/v1/users/updateMe' : 'http://127.0.0.1:5500/api/v1/users/updateMe',
             data
         })
-
-        if(res.data.status == 'success') {
-            showAlert('success', `${type.toUpperCase()} updated successfully`)
+        if (res.data.status == 'success') {
+            showAlert('success', 'Your account was successfully updated.')
         }
+        location.reload(true)
     }
     catch(err) {
-        console.log(err)
+        showAlert('error', err.data.response.message)
+    }
+}
+
+
+export const updatePassword = async(data) => {
+    try {
+        const res = await axios({
+            method: 'PATCH',
+            url: (process.env.NODE_ENV === 'production') ? 'api/v1/users/updateMyPassword' : 'http://127.0.0.1:5500/api/v1/users/updateMyPassword',
+            data
+        })
+        if (res.data.status == 'success') {
+            showAlert('success', 'Your password was successfully updated.')
+        }
+        location.reload(true)
+    }
+    catch(err) {
         showAlert('error', err.response.data.message)
     }
 }
@@ -38,11 +51,9 @@ export const createUser = async(data) => {
             url: (process.env.NODE_ENV === 'production') ? 'api/v1/users/create-user' : 'http://127.0.0.1:5500/api/v1/users/create-user',
             data
         })
-
         if (res.data.status == 'success') {
-            showAlert('success', 'User created successfully!')
+            showAlert('success', 'User was successfully created.')
         }
-
     }
     catch(err) {
         showAlert('error', err.response.data.message)
@@ -56,13 +67,11 @@ export const updateUser = async(data, id) => {
             method: 'PATCH',
             url: (process.env.NODE_ENV === 'production') ? `api/v1/users/${id}` : `http://127.0.0.1:5500/api/v1/users/${id}`,
             data
-        })
-        
+        })        
+        location.reload(true)
         if (res.data.status == 'success') {
-            showAlert('success', 'User updated successfully!')
+            showAlert('success', 'User updated successfully.')
         }
-        // location.reload(true)
-
     }
     catch(err) {
         showAlert('error', err.response.data.message)
@@ -77,11 +86,66 @@ export const deleteUser = async(id) => {
             url: (process.env.NODE_ENV === 'production') ? `api/v1/users/${id}` : `http://127.0.0.1:5500/api/v1/users/${id}`,
             id
         })
-
+        
         if(res.data.status == 'success'){
-            showAlert('success', 'User deleted successfully')
+            showAlert('success', 'User deleted successfully.')
         }
+        window.setTimeout(() => {
+            location.assign('/me')
+        }, 1000)
 
+    }
+    catch(err) {
+        showAlert('error', err.response.data.message)
+    }
+}
+
+
+export const createBook = async(data) => {
+    try {
+        const res = await axios({
+            method: 'POST', 
+            url: (process.env.NODE_ENV === 'production') ? 'api/v1/books/create-book' : 'http://127.0.0.1:5500/api/v1/books/create-book',
+            data
+        })
+        if (res.data.status == 'success') {
+            showAlert('success', 'Book was successfully created.')
+        }
+    }
+    catch(err) {
+        showAlert('error', err.response.data.message)
+    }
+}
+
+
+export const updateBook = async(data, id) => {
+    try{
+        const res = await axios({
+            method: 'PATCH',
+            url: (process.env.NODE_ENV === 'production') ? `api/v1/books/${id}` :`http://127.0.0.1:5500/api/v1/books/${id}`,
+            data
+        })
+        if (res.data.status == 'success') {
+            showAlert('success', 'Book updated successfully.')
+        }
+        location.reload(true)
+    }
+    catch(err) {
+        showAlert('error', err.response.data.message)
+    }
+}
+
+
+export const deleteBook = async(id) => {
+    try{
+        const res = await axios({
+            method: 'DELETE',
+            url: (process.env.NODE_ENV === 'production') ? `api/v1/books/${id}` : `http://127.0.0.1:5500/api/v1/books/${id}`,
+            id
+        })
+        if (res.data.status == 'success') {
+            showAlert('success', 'Book deleted successfully.')
+        }
         window.setTimeout(() => {
             location.assign('/me')
         }, 1000)
@@ -90,3 +154,38 @@ export const deleteUser = async(id) => {
         showAlert('error', err.response.data.message)
     }
 }
+
+
+export const issueBook = async(data) => {
+    try {
+        const res = await axios({
+            method: 'POST',
+            url: (process.env.NODE_ENV === 'production') ? 'api/v1/issueBooks/issue-book' : `http://127.0.0.1:5500/api/v1/issueBooks/issue-book`,
+            data
+        })
+        if (res.data.status == 'success') {
+            showAlert('success', 'Book issued successfully.')
+        }
+
+    }
+    catch(err) {
+        showAlert('error', err.response.data.message)
+    }
+}
+
+export const returnBook = async(data, id) => {
+    try {
+        const res = await axios ({
+            method: 'PATCH',
+            url: (process.env.NODE_ENV === 'production') ? `api/v1/issueBooks/${id}` : `http://127.0.0.1:5500/api/v1/issueBooks/${id}`,
+            data
+        })
+        if (res.data.status == 'success') {
+            showAlert('success', 'Book returned successfully.')
+        }
+    }
+    catch (err) {
+        showAlert('error', err.response.data.message)
+    }
+}
+

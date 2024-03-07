@@ -580,7 +580,15 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 
 },{}],"f2QDv":[function(require,module,exports) {
 //entry file...get data from user interface
-var _esnextArrayLastIndexJs = require("core-js/modules/esnext.array.last-index.js");
+var _esnextArrayLastIndexJs = require("core-js/modules/esnext.array.last-index.js"); // var links = document.querySelectorAll('li');
+ // links.forEach(function (element) {
+ //   element.addEventListener('click', function (e) {
+ //     links.forEach(function (element) {
+ //       element.classList.remove('active');
+ //     });
+ //     this.classList.add('active');
+ //   });
+ // });
 var _esnextArrayLastItemJs = require("core-js/modules/esnext.array.last-item.js");
 var _esnextCompositeKeyJs = require("core-js/modules/esnext.composite-key.js");
 var _esnextCompositeSymbolJs = require("core-js/modules/esnext.composite-symbol.js");
@@ -670,6 +678,12 @@ const userPasswordForm = document.querySelector(".form-user-password");
 const createUserForm = document.querySelector(".create-user-form");
 const updateUserForm = document.querySelector("#update-user-form");
 const deleteUserForm = document.querySelector("#delete-user-form");
+const createBookForm = document.querySelector(".create-book-form");
+const deleteBookForm = document.querySelector("#delete-book-form");
+const updateBookForm = document.querySelector("#update-book-form");
+const bookStateChanger = document.getElementById("book-state");
+const issueBookForm = document.querySelector("#issue-book-form");
+const returnBookForm = document.querySelector("#return-book-form");
 if (loginForm) loginForm.addEventListener("submit", (e)=>{
     e.preventDefault();
     const email = document.getElementById("email").value;
@@ -677,15 +691,19 @@ if (loginForm) loginForm.addEventListener("submit", (e)=>{
     (0, _login.login)(email, password);
 });
 if (logoutBtn) logoutBtn.addEventListener("click", (0, _login.logout));
-if (userDataForm) userDataForm.addEventListener("submit", (e)=>{
+if (userDataForm) userDataForm.addEventListener("submit", async (e)=>{
     e.preventDefault();
+    document.getElementById("save-settings-btn").textContent = "Updating...";
+    const name = document.getElementById("name").value;
+    const gender = document.getElementById("gender").value;
     const form = new FormData();
-    form.append("name", document.getElementById("name").value);
+    form.append("name", name.charAt(0).toUpperCase() + name.slice(1));
     form.append("email", document.getElementById("email").value);
-    form.append("gender", document.getElementById("gender").value);
+    form.append("gender", gender.charAt(0).toUpperCase() + gender.slice(1));
     form.append("number", document.getElementById("number").value);
     form.append("photo", document.getElementById("photo").files[0]);
-    (0, _settings.updateSettings)(form, "data");
+    await (0, _settings.updateAccount)(form);
+    document.getElementById("save-settings-btn").textContent = "Save settings";
 });
 if (userPasswordForm) userPasswordForm.addEventListener("submit", async (e)=>{
     //async is used because we are changing the text content
@@ -695,11 +713,11 @@ if (userPasswordForm) userPasswordForm.addEventListener("submit", async (e)=>{
     const password = document.getElementById("new-password").value;
     const passwordConfirm = document.getElementById("confirm-password").value;
     //await is used because we are changing the text content
-    await (0, _settings.updateSettings)({
+    await (0, _settings.updatePassword)({
         passwordCurrent,
         password,
         passwordConfirm
-    }, "password");
+    });
     document.getElementById("save-password-btn").textContent = "Save Password";
     userPasswordForm.reset();
 //to reset the value coloumns to blank after update
@@ -707,10 +725,13 @@ if (userPasswordForm) userPasswordForm.addEventListener("submit", async (e)=>{
 if (createUserForm) createUserForm.addEventListener("submit", async (e)=>{
     e.preventDefault();
     document.getElementById("create-user-btn").textContent = "Creating User";
-    const name = document.getElementById("name").value;
+    const getRole = document.getElementById("role").value;
+    const getName = document.getElementById("name").value;
+    const getGender = document.getElementById("gender").value;
+    const name = getName.charAt(0).toUpperCase() + getName.slice(1);
     const email = document.getElementById("email").value;
-    const role = document.getElementById("role").value;
-    const gender = document.getElementById("gender").value;
+    const role = getRole.charAt(0).toLowerCase() + getRole.slice(1);
+    const gender = getGender.charAt(0).toUpperCase() + getGender.slice(1);
     const number = document.getElementById("number").value;
     const password = document.getElementById("password").value;
     const passwordConfirm = document.getElementById("confirm-password").value;
@@ -726,30 +747,105 @@ if (createUserForm) createUserForm.addEventListener("submit", async (e)=>{
     document.getElementById("create-user-btn").textContent = "Create User";
     createUserForm.reset();
 });
-if (updateUserForm) updateUserForm.addEventListener("submit", (e)=>{
+if (updateUserForm) updateUserForm.addEventListener("submit", async (e)=>{
     e.preventDefault();
-    // const id = req.query.id
-    const form = new FormData();
-    form.append("name", document.getElementById("name").value);
-    form.append("email", document.getElementById("email").value);
-    form.append("gender", document.getElementById("gender").value);
-    form.append("number", document.getElementById("number").value);
+    document.getElementById("update-user").textContent = "Updating...";
+    const getName = document.getElementById("name").value;
+    const getGender = document.getElementById("gender").value;
+    const name = getName.charAt(0).toUpperCase() + getName.slice(1);
+    const email = document.getElementById("email").value;
+    const gender = getGender.charAt(0).toUpperCase() + getGender.slice(1);
+    const number = document.getElementById("number").value;
     const id = document.getElementById("id").value;
-    (0, _settings.updateUser)(form, id);
+    await (0, _settings.updateUser)({
+        name,
+        email,
+        gender,
+        number
+    }, id);
+    document.getElementById("update-user").textContent = "Update";
 });
-if (deleteUserForm) deleteUserForm.addEventListener("submit", (e)=>{
+if (deleteUserForm) deleteUserForm.addEventListener("submit", async (e)=>{
     e.preventDefault();
     const id = document.getElementById("id").value;
     (0, _settings.deleteUser)(id);
 });
-var links = document.querySelectorAll("li");
-links.forEach(function(element) {
-    element.addEventListener("click", function(e) {
-        links.forEach(function(element) {
-            element.classList.remove("active");
-        });
-        this.classList.add("active");
+if (createBookForm) createBookForm.addEventListener("submit", async (e)=>{
+    e.preventDefault();
+    document.getElementById("create-book-btn").textContent = "Creating...";
+    const getBookName = document.getElementById("book-name").value;
+    const getBookAuthor = document.getElementById("book-author").value;
+    const getBookPublisher = document.getElementById("book-publisher").value;
+    const bookName = getBookName.charAt(0).toUpperCase() + getBookName.slice(1);
+    const bookAuthor = getBookAuthor.charAt(0).toUpperCase() + getBookAuthor.slice(1);
+    const bookPublisher = getBookPublisher.charAt(0).toUpperCase() + getBookPublisher.slice(1);
+    const bookPages = document.getElementById("book-pages").value;
+    const bookPrice = document.getElementById("book-price").value;
+    const bookState = document.getElementById("create-book-state").value;
+    await (0, _settings.createBook)({
+        bookName,
+        bookAuthor,
+        bookPublisher,
+        bookPages,
+        bookPrice,
+        bookState
     });
+    document.getElementById("create-book-btn").textContent = "Create Book";
+    createBookForm.reset();
+});
+if (updateBookForm) updateBookForm.addEventListener("submit", async (e)=>{
+    e.preventDefault();
+    document.getElementById("update-book").textContent = "Updating...";
+    const getBookName = document.getElementById("book-name").value;
+    const getBookAuthor = document.getElementById("book-author").value;
+    const getBookPublisher = document.getElementById("book-publisher").value;
+    const bookName = getBookName.charAt(0).toUpperCase() + getBookName.slice(1);
+    const bookAuthor = getBookAuthor.charAt(0).toUpperCase() + getBookAuthor.slice(1);
+    const bookPublisher = getBookPublisher.charAt(0).toUpperCase() + getBookPublisher.slice(1);
+    const bookPages = document.getElementById("book-pages").value;
+    const bookPrice = document.getElementById("book-price").value;
+    const bookState = document.getElementById("book-state").value;
+    const image = document.getElementById("photo").files[0];
+    const id = document.getElementById("book-id").value;
+    await (0, _settings.updateBook)({
+        bookName,
+        bookAuthor,
+        bookPublisher,
+        bookPages,
+        bookPrice,
+        bookState,
+        image
+    }, id);
+    document.getElementById("update-book").textContent = "Update";
+});
+if (deleteBookForm) deleteBookForm.addEventListener("submit", (e)=>{
+    e.preventDefault();
+    const id = document.getElementById("book-id").value;
+    (0, _settings.deleteBook)(id);
+});
+if (issueBookForm) issueBookForm.addEventListener("submit", async (e)=>{
+    e.preventDefault();
+    document.getElementById("issue-book").textContent = "Issuing...";
+    const book = document.getElementById("book-issue-name").value;
+    const userEmail = document.getElementById("book-issue-student-email").value;
+    await (0, _settings.issueBook)({
+        book,
+        userEmail
+    });
+    document.getElementById("issue-book").textContent = "Issue";
+    issueBookForm.reset();
+});
+if (returnBookForm) returnBookForm.addEventListener("submit", async (e)=>{
+    e.preventDefault();
+    document.getElementById("return-book").textContent = "Returning...";
+    const id = document.getElementById("book-return-id").value;
+    const status = document.getElementById("book-return-status").value;
+    const returnedOn = new Date().toISOString().slice(0, 10);
+    await (0, _settings.returnBook)({
+        status,
+        returnedOn
+    }, id);
+    document.getElementById("return-book").textContent = "Return";
 });
 
 },{"core-js/modules/esnext.array.last-index.js":"8cpHj","core-js/modules/esnext.array.last-item.js":"3KWUU","core-js/modules/esnext.composite-key.js":"3zsBr","core-js/modules/esnext.composite-symbol.js":"6P6E3","core-js/modules/esnext.map.delete-all.js":"84I4a","core-js/modules/esnext.map.every.js":"a0ie9","core-js/modules/esnext.map.filter.js":"8EHBg","core-js/modules/esnext.map.find.js":"kzunK","core-js/modules/esnext.map.find-key.js":"ipfV1","core-js/modules/esnext.map.from.js":"aMX7r","core-js/modules/esnext.map.group-by.js":"3AR1K","core-js/modules/esnext.map.includes.js":"3cPf4","core-js/modules/esnext.map.key-by.js":"czzPK","core-js/modules/esnext.map.key-of.js":"la1gU","core-js/modules/esnext.map.map-keys.js":"12CRV","core-js/modules/esnext.map.map-values.js":"fQehs","core-js/modules/esnext.map.merge.js":"5Qvm2","core-js/modules/esnext.map.of.js":"3WfcG","core-js/modules/esnext.map.reduce.js":"8ampn","core-js/modules/esnext.map.some.js":"eVX7K","core-js/modules/esnext.map.update.js":"agmCJ","core-js/modules/esnext.math.clamp.js":"fVCxt","core-js/modules/esnext.math.deg-per-rad.js":"16Ig2","core-js/modules/esnext.math.degrees.js":"lAovk","core-js/modules/esnext.math.fscale.js":"k2b33","core-js/modules/esnext.math.iaddh.js":"3rdHO","core-js/modules/esnext.math.imulh.js":"8UDpO","core-js/modules/esnext.math.isubh.js":"hHlFR","core-js/modules/esnext.math.rad-per-deg.js":"d0sq8","core-js/modules/esnext.math.radians.js":"4O5p8","core-js/modules/esnext.math.scale.js":"7eJRv","core-js/modules/esnext.math.seeded-prng.js":"avTaO","core-js/modules/esnext.math.signbit.js":"cwFfw","core-js/modules/esnext.math.umulh.js":"29loa","core-js/modules/esnext.number.from-string.js":"3xbh3","core-js/modules/esnext.observable.js":"eeV02","core-js/modules/esnext.promise.try.js":"9Mfk9","core-js/modules/esnext.reflect.define-metadata.js":"hNtw3","core-js/modules/esnext.reflect.delete-metadata.js":"gLTQ0","core-js/modules/esnext.reflect.get-metadata.js":"4ocs1","core-js/modules/esnext.reflect.get-metadata-keys.js":"c4lFr","core-js/modules/esnext.reflect.get-own-metadata.js":"92uop","core-js/modules/esnext.reflect.get-own-metadata-keys.js":"1tHok","core-js/modules/esnext.reflect.has-metadata.js":"cVgdu","core-js/modules/esnext.reflect.has-own-metadata.js":"9crGj","core-js/modules/esnext.reflect.metadata.js":"aSvLp","core-js/modules/esnext.set.add-all.js":"7qoXf","core-js/modules/esnext.set.delete-all.js":"79fB3","core-js/modules/esnext.set.difference.js":"773AO","core-js/modules/esnext.set.every.js":"4X7Cu","core-js/modules/esnext.set.filter.js":"a8QMe","core-js/modules/esnext.set.find.js":"44hBz","core-js/modules/esnext.set.from.js":"fFjm0","core-js/modules/esnext.set.intersection.js":"5PUFy","core-js/modules/esnext.set.is-disjoint-from.js":"b3q3i","core-js/modules/esnext.set.is-subset-of.js":"5igXN","core-js/modules/esnext.set.is-superset-of.js":"1amm1","core-js/modules/esnext.set.join.js":"bMl6L","core-js/modules/esnext.set.map.js":"g65Jk","core-js/modules/esnext.set.of.js":"h11gG","core-js/modules/esnext.set.reduce.js":"gtD5C","core-js/modules/esnext.set.some.js":"aYdPy","core-js/modules/esnext.set.symmetric-difference.js":"lsopM","core-js/modules/esnext.set.union.js":"3nyPK","core-js/modules/esnext.string.at.js":"PgTGt","core-js/modules/esnext.string.code-points.js":"138n3","core-js/modules/esnext.symbol.dispose.js":"b9ez5","core-js/modules/esnext.symbol.observable.js":"bTlfI","core-js/modules/esnext.symbol.pattern-match.js":"dLSVv","core-js/modules/esnext.weak-map.delete-all.js":"jHykW","core-js/modules/esnext.weak-map.from.js":"hUBsF","core-js/modules/esnext.weak-map.of.js":"cBEF1","core-js/modules/esnext.weak-set.add-all.js":"aizkc","core-js/modules/esnext.weak-set.delete-all.js":"d5YOC","core-js/modules/esnext.weak-set.from.js":"upZfU","core-js/modules/esnext.weak-set.of.js":"CNJie","core-js/modules/web.immediate.js":"49tUX","regenerator-runtime/runtime":"dXNgZ","./alerts":"6Mcnf","./login":"7yHem","./settings":"fD8ms"}],"8cpHj":[function(require,module,exports) {
@@ -11308,27 +11404,44 @@ exports.default = HttpStatusCode;
 //to update user's password by user and his/her password 
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "updateSettings", ()=>updateSettings);
+parcelHelpers.export(exports, "updateAccount", ()=>updateAccount);
+parcelHelpers.export(exports, "updatePassword", ()=>updatePassword);
 parcelHelpers.export(exports, "createUser", ()=>createUser);
 parcelHelpers.export(exports, "updateUser", ()=>updateUser);
 parcelHelpers.export(exports, "deleteUser", ()=>deleteUser);
+parcelHelpers.export(exports, "createBook", ()=>createBook);
+parcelHelpers.export(exports, "updateBook", ()=>updateBook);
+parcelHelpers.export(exports, "deleteBook", ()=>deleteBook);
+parcelHelpers.export(exports, "issueBook", ()=>issueBook);
+parcelHelpers.export(exports, "returnBook", ()=>returnBook);
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _alerts = require("./alerts");
 var _catchAsync = require("../../utils/catchAsync");
 var _catchAsyncDefault = parcelHelpers.interopDefault(_catchAsync);
-const updateSettings = async (data, type)=>{
+const updateAccount = async (data)=>{
     try {
-        const url = type === "password" ? "http://127.0.0.1:5500/api/v1/users/updateMyPassword" : "http://127.0.0.1:5500/api/v1/users/updateMe";
         const res = await (0, _axiosDefault.default)({
             method: "PATCH",
-            // url: type === 'password' ? 'http://127.0.0.1:5500/api/v1/users/updateMyPassword' : 'http://127.0.0.1:5500/api/v1/users/updateMe',
-            url,
+            url: "http://127.0.0.1:5500/api/v1/users/updateMe",
             data
         });
-        if (res.data.status == "success") (0, _alerts.showAlert)("success", `${type.toUpperCase()} updated successfully`);
+        if (res.data.status == "success") (0, _alerts.showAlert)("success", "Your account was successfully updated.");
+        location.reload(true);
     } catch (err) {
-        console.log(err);
+        (0, _alerts.showAlert)("error", err.data.response.message);
+    }
+};
+const updatePassword = async (data)=>{
+    try {
+        const res = await (0, _axiosDefault.default)({
+            method: "PATCH",
+            url: "http://127.0.0.1:5500/api/v1/users/updateMyPassword",
+            data
+        });
+        if (res.data.status == "success") (0, _alerts.showAlert)("success", "Your password was successfully updated.");
+        location.reload(true);
+    } catch (err) {
         (0, _alerts.showAlert)("error", err.response.data.message);
     }
 };
@@ -11339,7 +11452,7 @@ const createUser = async (data)=>{
             url: "http://127.0.0.1:5500/api/v1/users/create-user",
             data
         });
-        if (res.data.status == "success") (0, _alerts.showAlert)("success", "User created successfully!");
+        if (res.data.status == "success") (0, _alerts.showAlert)("success", "User was successfully created.");
     } catch (err) {
         (0, _alerts.showAlert)("error", err.response.data.message);
     }
@@ -11351,8 +11464,8 @@ const updateUser = async (data, id)=>{
             url: `http://127.0.0.1:5500/api/v1/users/${id}`,
             data
         });
-        if (res.data.status == "success") (0, _alerts.showAlert)("success", "User updated successfully!");
-    // location.reload(true)
+        location.reload(true);
+        if (res.data.status == "success") (0, _alerts.showAlert)("success", "User updated successfully.");
     } catch (err) {
         (0, _alerts.showAlert)("error", err.response.data.message);
     }
@@ -11364,10 +11477,74 @@ const deleteUser = async (id)=>{
             url: `http://127.0.0.1:5500/api/v1/users/${id}`,
             id
         });
-        if (res.data.status == "success") (0, _alerts.showAlert)("success", "User deleted successfully");
+        if (res.data.status == "success") (0, _alerts.showAlert)("success", "User deleted successfully.");
         window.setTimeout(()=>{
             location.assign("/me");
         }, 1000);
+    } catch (err) {
+        (0, _alerts.showAlert)("error", err.response.data.message);
+    }
+};
+const createBook = async (data)=>{
+    try {
+        const res = await (0, _axiosDefault.default)({
+            method: "POST",
+            url: "http://127.0.0.1:5500/api/v1/books/create-book",
+            data
+        });
+        if (res.data.status == "success") (0, _alerts.showAlert)("success", "Book was successfully created.");
+    } catch (err) {
+        (0, _alerts.showAlert)("error", err.response.data.message);
+    }
+};
+const updateBook = async (data, id)=>{
+    try {
+        const res = await (0, _axiosDefault.default)({
+            method: "PATCH",
+            url: `http://127.0.0.1:5500/api/v1/books/${id}`,
+            data
+        });
+        if (res.data.status == "success") (0, _alerts.showAlert)("success", "Book updated successfully.");
+        location.reload(true);
+    } catch (err) {
+        (0, _alerts.showAlert)("error", err.response.data.message);
+    }
+};
+const deleteBook = async (id)=>{
+    try {
+        const res = await (0, _axiosDefault.default)({
+            method: "DELETE",
+            url: `http://127.0.0.1:5500/api/v1/books/${id}`,
+            id
+        });
+        if (res.data.status == "success") (0, _alerts.showAlert)("success", "Book deleted successfully.");
+        window.setTimeout(()=>{
+            location.assign("/me");
+        }, 1000);
+    } catch (err) {
+        (0, _alerts.showAlert)("error", err.response.data.message);
+    }
+};
+const issueBook = async (data)=>{
+    try {
+        const res = await (0, _axiosDefault.default)({
+            method: "POST",
+            url: `http://127.0.0.1:5500/api/v1/issueBooks/issue-book`,
+            data
+        });
+        if (res.data.status == "success") (0, _alerts.showAlert)("success", "Book issued successfully.");
+    } catch (err) {
+        (0, _alerts.showAlert)("error", err.response.data.message);
+    }
+};
+const returnBook = async (data, id)=>{
+    try {
+        const res = await (0, _axiosDefault.default)({
+            method: "PATCH",
+            url: `http://127.0.0.1:5500/api/v1/issueBooks/${id}`,
+            data
+        });
+        if (res.data.status == "success") (0, _alerts.showAlert)("success", "Book returned successfully.");
     } catch (err) {
         (0, _alerts.showAlert)("error", err.response.data.message);
     }

@@ -1,22 +1,19 @@
 extends account 
 
+mixin settingUser(id, labelName, type, name, value, required=false, placeholder)
+    label(for=`${id}`) 
+        | #{labelName}
+    input.form-user-data-input(id=`${id}` , type=`${type}`, name=`${name}`, value=`${value}`, required=required, placeholder=placeholder)
+
 block user-account 
         #user-account-content
                 .form-user-heading
                         | Your Account Settings
                 form.form.form-user-data
-                        label(for="name")
-                                | Name
-                        input#name.form-user-data-input(type="text", value=`${user.name}`, name="name", required)
-                        label(for="email")
-                                | Email Address
-                        input#email.form-user-data-input(type="email", value=`${user.email}`, name="email", required)
-                        label(for="number")
-                                | Phone No.
-                        input#number.form-user-data-input(type="number", value=`${user.number}`, name="number", required)
-                        label(for="gender")
-                                | Gender
-                        input#gender.form-user-data-input(type="text", value=`${user.gender}`, name="gender", required)
+                        +settingUser("name", "Name", "text", "name", `${user.name}`)
+                        +settingUser("email", "Email Address", "email", "email", `${user.email}`)
+                        +settingUser("number", "Phone No.", "number", "number", `${user.number}`)
+                        +settingUser("gender", "Gender", "text", "gender", `${user.gender}`)
                         .user-photo-form
                                 img#form-user-data-photo(src=`img/users/${user.photo}`, alt='User Photo')
                                 input#photo.user-photo-upload(type="file", name="photo", accept="image/*")
@@ -29,15 +26,9 @@ block user-account
                 .form-user-heading
                         | Password Settings
                 form.form.form-user-password
-                        label(for="current-password")
-                                | Current Password
-                        input#current-password.form-user-data-input(type="password", name="current-password", placeholder="********", required)
-                        label(for="new-password")
-                                | New Password
-                        input#new-password.form-user-data-input(type="password", name="new-password", placeholder="********", required)
-                        label(for="confirm-password")
-                                | Confirm Password
-                        input#confirm-password.form-user-data-input(type="password", name="confirm-password", placeholder="********", required)
+                        +settingUser("current-password", "Current Password", "password", "current-password", "", true, "********")
+                        +settingUser("new-password", "New Password", "password", "new-password", "", true, "********")
+                        +settingUser("confirm-password", "Confirm Password", "password", "confirm-password", "", true, "********")
                         .settings-btn
                                 button#save-password-btn.update-create-btn
                                         | Save password

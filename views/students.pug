@@ -1,5 +1,10 @@
 extends account
 
+mixin studentContainer(id, labelName, type, name, value, disabled=false)
+    label(for=`${id}`) 
+        | #{labelName}
+    input.user-container-input(id=`${id}` , type=`${type}`, name=`${name}`, value=`${value}`, disabled=disabled)
+
 block user-account
     #user-account-content
         #display-user-containers
@@ -12,20 +17,14 @@ block user-account
                         #user-container-main
                             #user-container-main-heading
                                 | Details
-                            label(for="email")
-                                | Email Address
-                            input#email.user-container-input(type="email", value=`${student.email}`, name="email")
-                            label(for="gender")
-                                | Gender
-                            input#gender.user-container-input(type="text", value=`${student.gender}`, name="gender")
-                            label(for="number")
-                                | Phone No.
-                            input#number.user-container-input(type="number", value=`${student.number}`, name="number")
+                            +studentContainer("email", "Email Address", "email","email", `${student.email}`, true)
+                            +studentContainer("gender", "Gender", "text", "gender", `${student.gender}`, true)
+                            +studentContainer("number", "Phone No.", "number", "number", `${student.number}`, true)
 
                         #user-container-footer
                             a.upd-dlt-view-btn(href=`/update-user?id=${student._id}`)
                                 | Update
                             a.upd-dlt-view-btn(href=`/delete-user?id=${student._id}`)
                                 | Delete
-                            a.upd-dlt-view-btn
+                            a.upd-dlt-view-btn(href=`/book-issued-student?id=${student._id}`)
                                 | Issues

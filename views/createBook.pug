@@ -1,0 +1,23 @@
+extends account
+
+mixin createBook(id, labelName, type, name, required=false)
+    label(for=`${id}`) 
+        | #{labelName}
+    input.form-user-data-input(id=`${id}` , type=`${type}`, name=`${name}`, required=required)
+
+block user-account
+    #user-account-content
+        .form-user-heading
+            | Create Book
+        form.form.create-book-form
+            +createBook("book-name", "Book Name", "text", "book-name", true)
+            +createBook("book-author", "Book Author", "text", "book-author", true)
+            +createBook("book-publisher", "Book Publisher", "text", "book-publisher", true)
+            +createBook("book-pages", "Book Pages", "number", "book-pages", true)
+            +createBook("book-price", "Book Price", "number", "book-pages", true)
+            select#create-book-state(name="book-state", required) 
+                option(value="Available") Available  
+                option(value="Unavailable") Unavailable
+            .settings-btn
+                button#create-book-btn.update-create-btn
+                    | Create Book

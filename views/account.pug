@@ -17,7 +17,7 @@ block content
                 else if (user.role === 'student')
                     ul.side-nav 
                         +navItem('/me', 'Settings', 'settings', true)
-                        +navItem('#', 'My Books', 'books')
+                        +navItem('/my-books', 'My Books', 'booksIssued')
 
                 else if (user.role === 'librarian')
                     ul.side-nav 
@@ -25,6 +25,7 @@ block content
                         +navItem('/create-user', 'Create User', 'create-user')
                         +navItem('/students', 'Students', 'students')
                         +navItem('/staff', 'Staff', 'staff')
-                        +navItem('#', 'Books', 'books')
+                        +navItem('/books', 'Books', 'books')
+                        +navItem('/books-issued', 'Books Issued', 'booksIssued')
 
             block user-account

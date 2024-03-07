@@ -1,0 +1,32 @@
+extends base
+
+mixin updateBook(id, labelName, type, name, value, disabled=false)
+    label(for=`${id}`) 
+        | #{labelName}
+    input.book-container-input(id=`${id}` , type=`${type}`, name=`${name}`, value=`${value}`, disabled=disabled)
+
+block content
+    #main-content
+        #update-user-container-form
+            form#update-book-form
+                #card-librarian
+                    #card-header-librarian
+                        img#books-image(src=`img/books/${updateBook.image}`, alt=`${updateBook.name} image`)
+                    #card-details-librarian
+                        +updateBook("book-id", "Book Id", "text", "book-id", `${updateBook._id}`, true)
+                        +updateBook("book-name", "ook Name", "text", "book-name", `${updateBook.bookName}`)
+                        +updateBook("book-author", "Book Author", "text", "book-author", `${updateBook.bookAuthor}`)
+                        +updateBook("book-publisher", "Book Publisher", "text", "book-publisher", `${updateBook.bookPublisher}`)
+                        +updateBook("book-page", "Book Pages", "number", "book-pages", `${updateBook.bookPages}`)
+                        +updateBook("book-price", "Book Price (Rs.)", "number", "book-price", `${updateBook.bookPrice}`)
+                        label(for="book-state")
+                            | Availability
+                        select#book-state(name="book-state") 
+                            option(value="Available" selected) Available  
+                            option(value="Unavailable") Unavailable 
+                        input#photo.book-photo-upload(type="file", name="photo", accept="image/*")
+                        label(for="photo")
+                            | Choose a new photo
+                    #card-footer-librarian 
+                        button#update-book
+                            | Update

@@ -1,0 +1,28 @@
+extends account
+
+mixin bookContainer(id, labelName, type, name, value, disabled=false)
+    label(for=`${id}`) 
+        | #{labelName}
+    input.book-container-input(id=`${id}` , type=`${type}`, name=`${name}`, value=`${value}`, disabled=disabled)
+
+block user-account
+    #user-account-content
+        .card-container
+            each book in books
+                #card-librarian
+                    #card-header-librarian
+                        img#books-image(src=`img/books/${book.image}`, alt=`${book.name} image`)
+                    #card-details-librarian
+                        +bookContainer("book-name", "Book Name", "text", "book-name", `${book.bookName}`, true)
+                        +bookContainer("book-author", "Book Author", "text", "book-author", `${book.bookAuthor}`, true)
+                        +bookContainer("book-publisher", "Book Publisher", "text", "book-publisher", `${book.bookPublisher}`, true)
+                        +bookContainer("book-pages", "Book Pages", "number", "book-pages", `${book.bookPages}`, true)
+                        +bookContainer("book-price", "Book Price (Rs.)", "number", "book-price", `${book.bookPrice}`, true)
+                        +bookContainer("book-availability", "Availability", "text", "book-availability", `${book.bookState}`, true)
+                    #card-footer-librarian
+                        a.upd-dlt-issue-btn(href=`/update-book?id=${book._id}`)
+                            | Update
+                        a.upd-dlt-issue-btn(href=`/delete-book?id=${book._id}`)
+                            | Delete
+                        a.upd-dlt-issue-btn(href=`/issue-book?id=${book._id}`)
+                            | Issue

@@ -1,0 +1,18 @@
+extends base
+
+mixin issueBook(id, labelName, type, name, value, disabled=false)
+    label(for=`${id}`) 
+        | #{labelName}
+    input.book-container-input(id=`${id}` , type=`${type}`, name=`${name}`, value=`${value}`, disabled=disabled)
+
+block content
+    #main-content
+        #update-user-container-form 
+            form#issue-book-form 
+                #book-issue-container
+                    #book-issue-container-main
+                        +issueBook('book-issue-name', 'Book Name', 'text', 'book-issue-name', `${issueBook.bookName}`, true)
+                        +issueBook('book-issue-student-email', "Student's Email", 'text', 'book-issue-student-email', '')
+                    #book-issue-container-footer
+                        button#issue-book
+                            | Issue

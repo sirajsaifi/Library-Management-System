@@ -1,5 +1,10 @@
 extends account
 
+mixin staffContainer(id, labelName, type, name, value, disabled=false)
+    label(for=`${id}`) 
+        | #{labelName}
+    input.user-container-input(id=`${id}` , type=`${type}`, name=`${name}`, value=`${value}`, disabled=disabled)
+
 block user-account
     #user-account-content
         #display-user-containers
@@ -13,15 +18,9 @@ block user-account
                             #user-container-main
                                 #user-container-main-heading
                                     | Details
-                                label(for="email")
-                                    | Email Address
-                                input#email.user-container-input(type="email", value=`${staff.email}`, name="email")
-                                label(for="gender")
-                                    | Gender
-                                input#gender.user-container-input(type="text", value=`${staff.gender}`, name="gender")
-                                label(for="number")
-                                    | Phone No.
-                                input#number.user-container-input(type="number", value=`${staff.number}`, name="number")
+                                +staffContainer("email", "Email Address", "email", "email", `${staff.email}`, true)
+                                +staffContainer("gender", "Gender", "text", "gender", `${staff.gender}`, true)
+                                +staffContainer("number", "Phone No.", "number", "number", `${staff.number}`, true)
                             #user-container-footer
                                 a.upd-dlt-btn(href=`/update-user?id=${staff._id}`)
                                     | Update

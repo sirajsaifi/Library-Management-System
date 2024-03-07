@@ -1,5 +1,10 @@
 extends base
 
+mixin updateUser(id, labelName, type, name, value, disabled=false)
+    label(for=`${id}`) 
+        | #{labelName}
+    input.user-container-input(id=`${id}` , type=`${type}`, name=`${name}`, value=`${value}`, disabled=disabled)
+
 block content
     #main-content
         #update-user-container-form
@@ -11,18 +16,10 @@ block content
                     #user-container-main
                         #user-container-main-heading
                             | Details
-                        label(for="id")
-                            | Id
-                        input#id.user-container-input(type="text", value=`${updateUserForm._id}`, name="id", disabled)
-                        label(for="email")
-                            | Email Address
-                        input#email.user-container-input(type="email", value=`${updateUserForm.email}`, name="email")
-                        label(for="gender")
-                            | Gender
-                        input#gender.user-container-input(type="text", value=`${updateUserForm.gender}`, name="gender")
-                        label(for="number")
-                            | Phone No.
-                        input#number.user-container-input(type="number", value=`${updateUserForm.number}`, name="number")
+                        +updateUser("id", "Id", "text","id", `${updateUserForm._id}`, true)
+                        +updateUser("email", "Email Address", "email","email", `${updateUserForm.email}`)
+                        +updateUser("gender", "Gender", "text","gender", `${updateUserForm.gender}`)
+                        +updateUser("number", "Phone No.", "number","number", `${updateUserForm.number}`)
 
                     #user-container-footer
                         button#update-user

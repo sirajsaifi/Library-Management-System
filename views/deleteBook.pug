@@ -1,0 +1,22 @@
+extends base
+
+mixin deleteBook(id, labelName, type, name, value, disabled=false)
+    label(for=`${id}`) 
+        | #{labelName}
+    input.book-container-input(id=`${id}` , type=`${type}`, name=`${name}`, value=`${value}`, disabled=disabled)
+
+block content
+    #main-content
+        #update-user-container-form
+            form#delete-book-form
+                #card-librarian
+                    #card-header-librarian
+                        img#books-image(src=`img/books/${deleteBook.image}`, alt=`${deleteBook.name} image`)
+                    #card-details-librarian
+                        +deleteBook("book-id", "Book Id", "text", "book-id", `${deleteBook._id}`, true)
+                        +deleteBook("book-name", "Book Name", "text", "book-name", `${deleteBook.bookName}`, true)
+                        +deleteBook("book-author", "Book Author", "text", "book-author", `${deleteBook.bookAuthor}`, true)
+                        +deleteBook("book-publisher", "Book Publisher", "text", "book-publisher", `${deleteBook.bookPublisher}`, true)
+                    #card-footer-librarian 
+                        button#delete-book
+                            | Delete

@@ -3,7 +3,7 @@ html {
 }
 
 #overview-page {
-    margin: 2vh 2vw;
+    margin: 2vh 1vw;
     height: auto;
 }
 
@@ -70,18 +70,13 @@ nav {
     font-size: 4vh;
     color: white;
     text-decoration: none;
-    border: 0.1vw solid rgb(255, 0, 0);
+    border: 0.1vw solid rgb(196, 37, 249);
     border-radius: 2vw;
     background-color: inherit;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    
 }
 
 .nav-logout-button:hover {
-    background-color: rgb(255, 0, 0);
+    background-color: rgb(132, 2, 175);
 }
 
 #nav-user-img {
@@ -102,8 +97,99 @@ a.navtext {
 .card-container {
     padding: 2vh 2vw;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-wrap: wrap;
+}
+
+#card-librarian {
+    width: 22vw;
+    height: auto;
+    margin: 10vh 0 0 0;
+    background-color: white;
+    border-top-left-radius: 3vw;
+    border-top-right-radius: 3vw;
+    border-bottom-left-radius: 1vw;
+    border-bottom-right-radius: 1vw;
+    box-shadow: 0 0 2vh 0 black;
+    font-family: 'Raleway', sans-serif;
+}
+
+#card-header-librarian{
+    width: inherit;
+}
+
+#books-image{
+    width: inherit;
+    height: 35vh;
+    border-top-left-radius: 3vw;
+    border-top-right-radius: 3vw;
+}
+
+#card-details-librarian{
+    overflow: hidden;
+    padding: 0 1vw;
+}
+
+#card-details-librarian > label {
+    display: block;
+    font-size: 3vh;
+}
+
+.book-container-input {
+    padding: 0.6vh 0.7vw;
+    margin: 0.7vh 0 2vh 0;
+    width: 17.5vw;
+    font-size: 3vh;
+    height: 5vh;
+    border: 0.2vh solid rgb(132, 2, 175);
+    background-color: inherit;
+    border-radius: 10vw;
+}
+
+.book-container-input:focus, #book-state:focus, #book-return-status:focus {
+    outline: none;
+    box-shadow: 0 0 2vh 0 rgb(132, 2, 175);
+}
+
+#book-state,#book-return-status {
+    padding: 0.6vh 0.7vw;
+    margin: 0.7vh 0 2vh 0;
+    width: 19.3vw;
+    font-size: 3vh;
+    height: 6.5vh;
+    border: 0.2vh solid rgb(132, 2, 175);
+    background-color: inherit;
+    border-radius: 10vw;
+}
+
+.upd-dlt-issue-btn {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    height: inherit;
+    width: 10vw;
+    /* width: 7.1vw; */
+    background-color: rgb(94, 12, 121);
+    color: white;
+    border: none;
+}
+
+#card-footer-librarian, #book-issue-container-footer, #book-return-container-footer {
+    height: 9vh;
+    width: inherit;
+    margin: 1vh 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    box-sizing: content-box;
+    border-bottom-left-radius: 1vw;
+    border-bottom-right-radius: 1vw;
+    font-size: 3.7vh
+}
+
+.upd-dlt-issue-btn:hover {
+    background-color: rgb(132, 2, 175);    
 }
 
 .card {
@@ -125,24 +211,24 @@ a.navtext {
 
 .books-image {
     width: inherit;
-    height: 50vh;
+    height: 40vh;
 }
 
 .card-details {
     box-sizing: border-box;
-    height: 47vh;
+    height: 35vh;
     padding: 2vh 1vw;
     background-color: white;
     line-height: 6vh;
     font-size: 4vh;
 }
 
-.card-details-librarian {
+/* .card-details-librarian {
     box-sizing: border-box;
     height: 82vh;
     padding: 2vh 1vw;
     background-color: white;
-}
+} */
 
 .book-name {
     padding: 2vh 0vw;
@@ -150,48 +236,11 @@ a.navtext {
     text-decoration: underline;
 }
 
-.book-container-input {
-    padding: 0.7vh 0.7vw;
-    margin: 0.2vh 0 1.7vh 0;
-    width: 22.5vw;
-    font-size: 2.7vh;
-    height: 4.5vh;
-    border: 0.2vh solid rgb(132, 2, 175);
-    background-color: inherit;
-    border-radius: 10vw;
-}
 
-.book-container-input:focus {
-    outline: none;
-    box-shadow: 0 0 2vh 0 rgb(132, 2, 175);
-}
-
-.card-details>label {
-    display: block;
-    font-size: 3.5vh;
-    font-weight: bold;
-}
-
-#book-availability {
-    padding: 0.7vh 0.7vw;
-    margin: 0 0 1.7vh 0;
-    width: 24vw;
-    font-size: 2.7vh;
-    height: 5.5vh;
-    border-radius: 10vw;
-}
-
-#book-availability:focus {
-    outline: none;
-    box-shadow: 0 0 2vh 0 rgb(132, 2, 175);
-}
-
-.card-footer-librarian {
+.card-footer {
     height: 9vh;
     width: inherit;
     margin: 1vh 0 0 0;
-    background-color: rgb(94, 12, 121);
-    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -199,39 +248,22 @@ a.navtext {
     box-sizing: content-box;
     border-bottom-left-radius: 1vw;
     border-bottom-right-radius: 1vw;
-    font-size: 3.7vh;
+    font-size: 3.7vh
 }
 
-#delete-book,
-#update-book {
-    display: grid;
-    align-items: center;
-    text-align: center;
-    height: inherit;
-    width: 13.5vw;
-}
-
-#delete-book:hover,
-#update-book:hover {
-    background-color: rgb(132, 2, 175);
-}
-
-.card-footer {
-    padding: 4.5vh 0.5vw;
-    width: inherit;
-    box-sizing: border-box;
-    text-align: center;
-    background-color: #e6e6e6;
-}
 
 .book-state {
-    padding: 2vh 0.5vw;
-    border: 0.1vw solid rgb(59, 153, 59);
-    border-radius: 2vw;
-    background-color: rgb(59, 153, 59);
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: inherit;
+    width: inherit;
+    background-color: rgb(94, 12, 121);
     color: white;
-    font-size: 4vh;
+    border: none;
 }
+
 
 #form-login {
     width: 100%;
@@ -442,9 +474,9 @@ a {
 
 .form-user-data-input {
     width: 35vw;
-    height: 6.5vh;
+    height: 6vh;
     margin: 1vh 0 2.5vh 0;
-    padding: 0.4vh 1.3vw;
+    padding: 0.3vh 1.3vw;
     border-radius: 5vw;
     border: 0.1vw solid rgb(132, 2, 175);
     font-size: 3vh;
@@ -452,7 +484,7 @@ a {
 
 .form-user-data-input:placeholder {
     font-family: 'Raleway', sans-serif;
-    font-size: 3vh;
+    font-size: 2.5vh;
 }
 
 .form-user-data-input:focus {
@@ -460,23 +492,23 @@ a {
     outline: none;
 }
 
-.user-photo-form {
+.user-photo-form, .book-photo-form {
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
 
-.user-photo-form>label {
+.user-photo-form>label, .book-photo-form>label {
     font-size: 4vh;
 }
 
-#form-user-data-photo {
+#form-user-data-photo, #form-book-data-photo {
     border-radius: 100%;
     height: 25vh;
     width: 10vw;
 }
 
-.user-photo-upload {
+.user-photo-upload, .book-photo-upload {
     height: 0.1vh;
     width: 0.1vw;
     opacity: 0;
@@ -486,11 +518,11 @@ a {
     overflow: hidden;
 }
 
-.user-photo-upload+label {
+.user-photo-upload+label, .book-photo-upload+label {
     text-decoration: underline;
 }
 
-.user-photo-upload+label:hover {
+.user-photo-upload+label:hover, .book-photo-upload+label:hover {
     color: rgb(132, 2, 175);
     ;
 }
@@ -520,10 +552,10 @@ a {
 }
 
 
-#role {
+#role, #create-book-state {
     width: 38vw;
     height: 7.5vh;
-    margin: 3vh 0 4vh 0;
+    margin: 1vh 0 4vh 0;
     padding: 0.4vh 0.5vw;
     border-radius: 5vw;
     border: 0.1vw solid rgb(132, 2, 175);
@@ -531,7 +563,7 @@ a {
 }
 
 
-#role:focus {
+#role:focus, #create-book-state:focus {
     box-shadow: 0 0 4vh 0 rgb(132, 2, 175);
     outline: none;
 }
@@ -547,7 +579,14 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 5vh 0;
+    padding: 3vh 0;
+}
+
+#student-book {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 3vh 3vw;    
 }
 
 #user-container {
@@ -619,7 +658,6 @@ a {
     padding: 1vh 0;
     margin: 1vh 0 4vh 0;
     background-color: rgb(132, 2, 175);
-    ;
     color: white;
     font-size: 3.5vh;
     text-align: center;
@@ -654,7 +692,7 @@ input[type=number] {
 
 #user-container-main>label {
     display: block;
-    font-size: 4vh;
+    font-size: 3vh;
 }
 
 #user-container-footer {
@@ -682,39 +720,7 @@ input[type=number] {
     border: none;
 }
 
-.upd-dlt-view-btn:hover{
-    background-color: rgb(132, 2, 175);
-}
-
-#update-user {
-    display: grid;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    height: inherit;
-    width: inherit;
-    background-color: rgb(94, 12, 121);
-    color: white;
-    border: none;
-}
-
-#update-user:hover {
-    background-color: rgb(132, 2, 175);
-}
-
-#delete-user {
-    display: grid;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    height: inherit;
-    width: inherit;
-    background-color: rgb(94, 12, 121);
-    color: white;
-    border: none;
-}
-
-#delete-user:hover {
+.upd-dlt-view-btn:hover, .upd-dlt-btn:hover{
     background-color: rgb(132, 2, 175);
 }
 
@@ -723,12 +729,54 @@ input[type=number] {
     align-items: center;
     justify-content: center;
     height: inherit;
-    width: 10.8vw;
+    width: 11vw;
     background-color: rgb(94, 12, 121);
     color: white;
     border: none;
 }
 
-.upd-dlt-btn:hover {
-    background-color: rgb(132, 2, 175);    
+
+#update-user, #delete-user, #update-book, #delete-book, #issue-book, #return-book {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: inherit;
+    width: inherit;
+    background-color: rgb(94, 12, 121);
+    color: white;
+    border: none;
+}
+
+#update-user:hover, #delete-user:hover, #update-book:hover,
+#delete-book:hover, #issue-book:hover, #return-book:hover {
+    background-color: rgb(132, 2, 175);
+}
+
+iframe[name=page-content] {
+    flex: auto;
+}
+
+#book-issue-container, #book-return-container {
+    width: 22vw;
+    height: auto;
+    margin: 10vh 0 0 0;
+    /* padding: 4vh 0; */
+    background-color: white;
+    border-top-left-radius: 3vw;
+    border-top-right-radius: 3vw;
+    border-bottom-left-radius: 1vw;
+    border-bottom-right-radius: 1vw;
+    box-shadow: 0 0 2vh 0 black;
+    font-family: 'Raleway', sans-serif
+}
+
+#book-issue-container-main > label, #book-return-container-main > label {
+    display: block;
+    font-size: 3vh;
+}
+
+#book-issue-container-main, #book-return-container-main {
+    overflow: hidden;
+    padding: 3vh 1vw;
 }

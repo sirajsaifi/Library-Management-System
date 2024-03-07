@@ -4,7 +4,7 @@ const slugify = require('slugify')
 const bookSchema = new mongoose.Schema({
     image: {
         type: String,
-        required: [true, 'A book must have a cover image']
+        default: 'createBookForm.png'
     },
     bookName: {
         type: String,

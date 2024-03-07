@@ -13,10 +13,5 @@ block content
                             b= `Book Author : ${book.bookAuthor}`
                             br
                             b= `Book Publisher : ${book.bookPublisher}`
-                            br
-                            b= `Book Pages : ${book.bookPages}`
-                            br
-                            b= `Book Price : ${book.bookPrice}`
-                            br
                         .card-footer 
-                            span.book-state Available
+                            button.book-state= `${book.bookState}`
