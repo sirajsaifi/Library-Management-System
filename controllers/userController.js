@@ -13,7 +13,7 @@ const multerStorage = multer.memoryStorage()
 //checks whether the uploaded file is image if so then True is passed in callback function else False along with error
 //can be used to check csv files...works for all kind of files
 const multerFilter = (req, file, cb) => {
-    if (file.mimetype.startsWith('image')) {
+    if (file.mimetype.startsWith('image')) {//to only allow images to be uploaded
         cb(null, true)
     } else {
         cb(new AppError('Not an image. Please upload only images.'), false)
@@ -26,11 +26,15 @@ const upload = multer({ //destination where to save the user's photo
 })
 
 exports.uploadUserPhoto = upload.single('photo')    //.single is because only a single image is going to be uploaded
+//above 'photo' is the field name in the database
 
 exports.resizeUserPhoto = catchAsync(async (req, res, next) => {
     if (!req.file) return next()    //if no request for upload then go to next middleware
+    //req.file is for a single file and req.files is for the multiple files
 
     req.file.filename = `user-${req.user.id}-${Date.now()}.jpeg`
+    //we have file.filename above because below in updateMe controller we are assigning it to
+    // filteredBody.photo...if it wasn't assigned below then it should be body.photo above
     //width(500) and height(500)
     await sharp(req.file.buffer)
         .resize(500, 500)
@@ -98,6 +102,6 @@ exports.deleteMe = catchAsync(async (req, res, next) => {
 })
 
 exports.getAllUsers = factory.getAll(User)
-exports.getUser = factory.getOne(User)
+exports.getUser = factory.getOne(User, { path: 'issuedBooks' })
 exports.updateUser = factory.updateOne(User)
 exports.deleteUser = factory.deleteOne(User)

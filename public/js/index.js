@@ -155,21 +155,24 @@ if (updateBookForm) updateBookForm.addEventListener('submit', async e => {
   e.preventDefault()
   document.getElementById('update-book').textContent = 'Updating...'
   
+  const form = new FormData()
+
   const getBookName = document.getElementById('book-name').value
   const getBookAuthor = document.getElementById('book-author').value
   const getBookPublisher = document.getElementById('book-publisher').value
   
-  const bookName = getBookName.charAt(0).toUpperCase() + getBookName.slice(1)
-  const bookAuthor = getBookAuthor.charAt(0).toUpperCase() + getBookAuthor.slice(1)
-  const bookPublisher = getBookPublisher.charAt(0).toUpperCase() + getBookPublisher.slice(1)
-  const bookPages = document.getElementById('book-pages').value
-  const bookPrice = document.getElementById('book-price').value
-  const bookState = document.getElementById('book-state').value
-  const image = document.getElementById('photo').files[0]
+  form.append("bookName", getBookName.charAt(0).toUpperCase() + getBookName.slice(1))
+  form.append("bookAuthor", getBookAuthor.charAt(0).toUpperCase() + getBookAuthor.slice(1))
+  form.append("bookPublisher", getBookPublisher.charAt(0).toUpperCase() + getBookPublisher.slice(1))
+  form.append("bookPages", document.getElementById('book-pages').value)
+  form.append("bookPrice", document.getElementById('book-price').value)
+  form.append("bookState", document.getElementById('book-state').value)
+  form.append("image", document.getElementById('photo').files[0])
   
   const id = document.getElementById('book-id').value
   
-  await updateBook({bookName, bookAuthor, bookPublisher, bookPages, bookPrice, bookState, image}, id)
+  // await updateBook({bookName, bookAuthor, bookPublisher, bookPages, bookPrice, bookState, image}, id)
+  await updateBook(form, id)
   document.getElementById('update-book').textContent = 'Update'
 })
 

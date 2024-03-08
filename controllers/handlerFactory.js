@@ -19,8 +19,9 @@ exports.getAll = Model => catchAsync(async (req, res, next) => {
 })
 
 
-exports.getOne = Model => catchAsync(async(req, res, next) => {
-    const query = Model.findById(req.params.id)
+exports.getOne = (Model, popOptions) => catchAsync(async(req, res, next) => {
+    let query = Model.findById(req.params.id)
+    if (popOptions) query = query.populate(popOptions)
     const doc = await query
 
     if (!doc) {

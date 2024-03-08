@@ -59,6 +59,9 @@ exports.signup = catchAsync(async(req, res, next) => {
     // }
 
     // new Email(newUser, url).sendWelcome()
+    res.status(200).json({
+        status: 'success'
+    })
     // createSendToken(newUser, 201, req, res)
 })
 

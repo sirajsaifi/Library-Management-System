@@ -13,20 +13,20 @@ block content
                     #card-header-librarian
                         img#books-image(src=`img/books/${updateBook.image}`, alt=`${updateBook.name} image`)
                     #card-details-librarian
+                        input#photo.book-photo-upload(type="file", name="photo", accept="image/*")
+                        label(for="photo")
+                            | Choose a new photo
                         +updateBook("book-id", "Book Id", "text", "book-id", `${updateBook._id}`, true)
-                        +updateBook("book-name", "ook Name", "text", "book-name", `${updateBook.bookName}`)
+                        +updateBook("book-name", "Book Name", "text", "book-name", `${updateBook.bookName}`)
                         +updateBook("book-author", "Book Author", "text", "book-author", `${updateBook.bookAuthor}`)
                         +updateBook("book-publisher", "Book Publisher", "text", "book-publisher", `${updateBook.bookPublisher}`)
-                        +updateBook("book-page", "Book Pages", "number", "book-pages", `${updateBook.bookPages}`)
+                        +updateBook("book-pages", "Book Pages", "number", "book-pages", `${updateBook.bookPages}`)
                         +updateBook("book-price", "Book Price (Rs.)", "number", "book-price", `${updateBook.bookPrice}`)
                         label(for="book-state")
                             | Availability
                         select#book-state(name="book-state") 
                             option(value="Available" selected) Available  
                             option(value="Unavailable") Unavailable 
-                        input#photo.book-photo-upload(type="file", name="photo", accept="image/*")
-                        label(for="photo")
-                            | Choose a new photo
                     #card-footer-librarian 
                         button#update-book
                             | Update

@@ -60,11 +60,11 @@ const userSchema = new mongoose.Schema({
 })
 
 
-// userSchema.virtual('issuedBooks', {
-//     ref: 'IssueBook',
-//     foreignField: 'user',
-//     localField: '_id'
-// })
+userSchema.virtual('issuedBooks', {
+    ref: 'IssueBook',
+    foreignField: 'user',
+    localField: '_id'
+})
 
 
 userSchema.pre('save', async function(next) {   //runs b/w the data we receive and the moment it is actually persisted to the database

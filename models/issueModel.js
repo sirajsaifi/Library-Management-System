@@ -16,7 +16,8 @@ const issueBookSchema = new mongoose.Schema({
         validate: [validator.isEmail, 'Please provide a valid email.']
     },
     user: {
-        type: mongoose.Schema.ObjectId
+        type: mongoose.Schema.ObjectId,
+        ref: 'User'
     },
     issuedAt: {
         type: String,
@@ -54,16 +55,6 @@ issueBookSchema.pre('save', function (next) {
     this.returnDate = returnDate.toISOString().slice(0, 10)
     next()
 })
-
-
-//to populate the book and user automatically whenever there is a query
-// issueBookSchema.pre(/^find/, function(next) {
-//     this.populate('user').populate({
-//         path: 'book',
-//         select: 'name'
-//     })
-//     next()
-// })
 
 
 const IssueBook = mongoose.model('IssueBook', issueBookSchema)
