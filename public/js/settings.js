@@ -12,7 +12,7 @@ export const updateAccount = async(data) => {
     try{
         const res = await axios({
             method: 'PATCH',
-            url: (process.env.NODE_ENV === 'production') ? 'api/v1/users/updateMe' : 'http://127.0.0.1:5500/api/v1/users/updateMe',
+            url: (process.env.NODE_ENV === 'production') ? '/api/v1/users/updateMe' : 'http://127.0.0.1:5500/api/v1/users/updateMe',
             data
         })
         if (res.data.status == 'success') {
@@ -30,7 +30,7 @@ export const updatePassword = async(data) => {
     try {
         const res = await axios({
             method: 'PATCH',
-            url: (process.env.NODE_ENV === 'production') ? 'api/v1/users/updateMyPassword' : 'http://127.0.0.1:5500/api/v1/users/updateMyPassword',
+            url: (process.env.NODE_ENV === 'production') ? '/api/v1/users/updateMyPassword' : 'http://127.0.0.1:5500/api/v1/users/updateMyPassword',
             data
         })
         if (res.data.status == 'success') {
@@ -48,7 +48,7 @@ export const createUser = async(data) => {
     try {
         const res = await axios({
             method: 'POST', 
-            url: (process.env.NODE_ENV === 'production') ? 'api/v1/users/create-user' : 'http://127.0.0.1:5500/api/v1/users/create-user',
+            url: (process.env.NODE_ENV === 'production') ? '/api/v1/users/create-user' : 'http://127.0.0.1:5500/api/v1/users/create-user',
             data
         })
         if (res.data.status == 'success') {
@@ -65,7 +65,7 @@ export const updateUser = async(data, id) => {
     try{
         const res = await axios({
             method: 'PATCH',
-            url: (process.env.NODE_ENV === 'production') ? `api/v1/users/${id}` : `http://127.0.0.1:5500/api/v1/users/${id}`,
+            url: (process.env.NODE_ENV === 'production') ? `/api/v1/users/${id}` : `http://127.0.0.1:5500/api/v1/users/${id}`,
             data
         })        
         location.reload(true)
@@ -83,13 +83,12 @@ export const deleteUser = async(id) => {
     try {
         const res = await axios({
             method: 'DELETE',
-            url: (process.env.NODE_ENV === 'production') ? `api/v1/users/${id}` : `http://127.0.0.1:5500/api/v1/users/${id}`,
+            url: (process.env.NODE_ENV === 'production') ? `/api/v1/users/${id}` : `http://127.0.0.1:5500/api/v1/users/${id}`,
             id
         })
         
-        if(res.data.status == 'success'){
-            showAlert('success', 'User deleted successfully.')
-        }
+        showAlert('success', 'User deleted successfully.')
+        
         window.setTimeout(() => {
             location.assign('/me')
         }, 1000)
@@ -105,7 +104,7 @@ export const createBook = async(data) => {
     try {
         const res = await axios({
             method: 'POST', 
-            url: (process.env.NODE_ENV === 'production') ? 'api/v1/books/create-book' : 'http://127.0.0.1:5500/api/v1/books/create-book',
+            url: (process.env.NODE_ENV === 'production') ? '/api/v1/books/create-book' : 'http://127.0.0.1:5500/api/v1/books/create-book',
             data
         })
         if (res.data.status == 'success') {
@@ -122,7 +121,7 @@ export const updateBook = async(data, id) => {
     try{
         const res = await axios({
             method: 'PATCH',
-            url: (process.env.NODE_ENV === 'production') ? `api/v1/books/${id}` :`http://127.0.0.1:5500/api/v1/books/${id}`,
+            url: (process.env.NODE_ENV === 'production') ? `/api/v1/books/${id}` :`http://127.0.0.1:5500/api/v1/books/${id}`,
             data
         })
         if (res.data.status == 'success') {
@@ -140,7 +139,7 @@ export const deleteBook = async(id) => {
     try{
         const res = await axios({
             method: 'DELETE',
-            url: (process.env.NODE_ENV === 'production') ? `api/v1/books/${id}` : `http://127.0.0.1:5500/api/v1/books/${id}`,
+            url: (process.env.NODE_ENV === 'production') ? `/api/v1/books/${id}` : `http://127.0.0.1:5500/api/v1/books/${id}`,
             id
         })
         if (res.data.status == 'success') {
@@ -160,7 +159,7 @@ export const issueBook = async(data) => {
     try {
         const res = await axios({
             method: 'POST',
-            url: (process.env.NODE_ENV === 'production') ? 'api/v1/issueBooks/issue-book' : `http://127.0.0.1:5500/api/v1/issueBooks/issue-book`,
+            url: (process.env.NODE_ENV === 'production') ? '/api/v1/issueBooks/issue-book' : `http://127.0.0.1:5500/api/v1/issueBooks/issue-book`,
             data
         })
         if (res.data.status == 'success') {
@@ -177,7 +176,7 @@ export const returnBook = async(data, id) => {
     try {
         const res = await axios ({
             method: 'PATCH',
-            url: (process.env.NODE_ENV === 'production') ? `api/v1/issueBooks/${id}` : `http://127.0.0.1:5500/api/v1/issueBooks/${id}`,
+            url: (process.env.NODE_ENV === 'production') ? `/api/v1/issueBooks/${id}` : `http://127.0.0.1:5500/api/v1/issueBooks/${id}`,
             data
         })
         if (res.data.status == 'success') {

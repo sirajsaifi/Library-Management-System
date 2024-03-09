@@ -2,8 +2,8 @@ const fs = require('fs')
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 
-const Book = require('./../../models/bookModel')
-const User = require('./../../models/userModel')
+const Book = require('../bookModel')
+const User = require('../userModel')
 
 dotenv.config({ path : './config.env'})
 

@@ -37,3 +37,10 @@ const server = app.listen(port, () => {
 })
 
 // console.log(x)   //example for uncaught exception
+
+process.on('SIGTERM', () =>{    //SIGTERM is used to restart our app every 24 hours
+    console.log('SIGTERM RECEIVED. Shutting down gracefully')
+    server.close(() => {    //gracefull shutdown and handles all the requests before shutting down
+        console.log('Process terminated!')
+    })
+})

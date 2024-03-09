@@ -211,14 +211,3 @@ if (returnBookForm) returnBookForm.addEventListener('submit', async e => {
   
   document.getElementById('return-book').textContent = 'Return'
 })
-
-
-// var links = document.querySelectorAll('li');
-// links.forEach(function (element) {
-//   element.addEventListener('click', function (e) {
-//     links.forEach(function (element) {
-//       element.classList.remove('active');
-//     });
-//     this.classList.add('active');
-//   });
-// });

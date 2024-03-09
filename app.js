@@ -8,6 +8,8 @@ const mongoSanitize = require('express-mongo-sanitize')
 const xss = require('xss-clean')
 const hpp = require('hpp')
 const cookieParser = require('cookie-parser')
+const cors = require('cors')
+const compression = require('compression')
 
 
 const bookRouter = require('./routes/bookRoutes')
@@ -26,6 +28,8 @@ app.set('views', path.join(__dirname, 'views'))
 
 app.use(express.static(`${__dirname}/public`))
 // app.use(express.static('public'))
+
+app.use(cors()) //Access-Control-Allow-Origin to *
 
 // app.use(morgan('dev'))
 if (process.env.NODE_ENV === 'development') {    //to use NODE_ENV variable...available to us in every single file...see video 67 time 12:00
@@ -58,9 +62,11 @@ app.use(mongoSanitize())    //looks at req.body && req.bodyString &&req.params a
 app.use(xss())  //will clean any user input from malicious html code
 
 //prevent parameterpollution
-// app.use(hpp({ whitelist: ['duration', 'ratingsAverage', 'ratingsQuantity', 'difficulty', 'maxGroupSize', 'price'] }))    //whiteList is the array of properties which we allow duplicate in the query string
+//prevents duplicate query strings like sort=price, sort=new etc etc
+app.use(hpp())  //use whitelist option to allow duplicate query like for duration
 
-
+//done before deployment
+app.use(compression())  //returns a middleware function which compresses all our responses(text) sent to client
 
 
 //test api

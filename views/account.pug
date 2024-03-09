@@ -12,16 +12,16 @@ block content
             #user-account-menu
                 if (user.role === 'staff')
                     ul.side-nav 
-                        +navItem('/me', 'Settings', 'settings', true)
+                        +navItem('/me', 'Settings', 'settings')
 
                 else if (user.role === 'student')
                     ul.side-nav 
-                        +navItem('/me', 'Settings', 'settings', true)
+                        +navItem('/me', 'Settings', 'settings')
                         +navItem('/my-books', 'My Books', 'booksIssued')
 
                 else if (user.role === 'librarian')
                     ul.side-nav 
-                        +navItem('/me', 'Settings', 'settings', true)
+                        +navItem('/me', 'Settings', 'settings')
                         +navItem('/create-user', 'Create User', 'create-user')
                         +navItem('/students', 'Students', 'students')
                         +navItem('/staff', 'Staff', 'staff')

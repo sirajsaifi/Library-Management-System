@@ -1,7 +1,7 @@
 {
-  "name": "booksdirectory",
+  "name": "librarymanagment",
   "version": "1.0.0",
-  "description": "Creating a Book Management System using node.js, express js & mongoDB",
+  "description": "Creating a Library Management System using node.js, express js, mongoDB, pug and css",
   "main": "app.js",
   "targets": {
     "main": false
@@ -19,8 +19,10 @@
   "dependencies": {
     "axios": "^1.6.5",
     "bcryptjs": "^2.4.3",
+    "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",
     "core-js": "^3.35.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-mongo-sanitize": "^2.2.0",
@@ -43,5 +45,9 @@
     "buffer": "^6.0.3",
     "cross-env": "^7.0.3",
     "parcel": "^2.11.0"
+  },
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "engines": {
+    "node": ">=v21.6.1"
   }
 }
