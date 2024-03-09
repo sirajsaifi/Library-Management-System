@@ -48,6 +48,6 @@
   },
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "engines": {
-    "node": ">=v21.6.1"
+    "node": ">=21.6.1"
   }
 }
