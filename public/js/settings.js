@@ -18,7 +18,6 @@ export const updateAccount = async(data) => {
         if (res.data.status == 'success') {
             showAlert('success', 'Your account was successfully updated.')
         }
-        location.reload(true)
     }
     catch(err) {
         showAlert('error', err.data.response.message)
@@ -36,7 +35,6 @@ export const updatePassword = async(data) => {
         if (res.data.status == 'success') {
             showAlert('success', 'Your password was successfully updated.')
         }
-        location.reload(true)
     }
     catch(err) {
         showAlert('error', err.response.data.message)
@@ -61,17 +59,29 @@ export const createUser = async(data) => {
 }
 
 
-export const updateUser = async(data, id) => {
+export const updateUser = async(data, id, role) => {
     try{
         const res = await axios({
             method: 'PATCH',
             url: (process.env.NODE_ENV === 'production') ? `/api/v1/users/${id}` : `http://127.0.0.1:5500/api/v1/users/${id}`,
             data
-        })        
-        location.reload(true)
+        }) 
+
         if (res.data.status == 'success') {
-            showAlert('success', 'User updated successfully.')
+            showAlert('success', `User updated successfully.`)
         }
+
+        if (role === 'student') {
+            window.setTimeout(() => {
+                location.assign('/students')
+            }, 1000)
+        }
+        else if (role === 'staff') {
+            window.setTimeout(() => {
+                location.assign('/staff')
+            }, 1000)
+        }
+
     }
     catch(err) {
         showAlert('error', err.response.data.message)
@@ -79,7 +89,7 @@ export const updateUser = async(data, id) => {
 }
 
 
-export const deleteUser = async(id) => {
+export const deleteUser = async(id, role) => {
     try {
         const res = await axios({
             method: 'DELETE',
@@ -89,9 +99,16 @@ export const deleteUser = async(id) => {
         
         showAlert('success', 'User deleted successfully.')
         
-        window.setTimeout(() => {
-            location.assign('/me')
-        }, 1000)
+        if (role === 'student') {
+            window.setTimeout(() => {
+                location.assign('/students')
+            }, 1000)
+        }
+        else if (role === 'staff') {
+            window.setTimeout(() => {
+                location.assign('/staff')
+            }, 1000)
+        }
 
     }
     catch(err) {
@@ -127,7 +144,11 @@ export const updateBook = async(data, id) => {
         if (res.data.status == 'success') {
             showAlert('success', 'Book updated successfully.')
         }
-        location.reload(true)
+
+        window.setTimeout(() => {
+            location.assign('/books')
+        }, 1000)
+
     }
     catch(err) {
         showAlert('error', err.response.data.message)
@@ -146,7 +167,7 @@ export const deleteBook = async(id) => {
             showAlert('success', 'Book deleted successfully.')
         }
         window.setTimeout(() => {
-            location.assign('/me')
+            location.assign('/books')
         }, 1000)
     }
     catch(err) {
@@ -165,6 +186,9 @@ export const issueBook = async(data) => {
         if (res.data.status == 'success') {
             showAlert('success', 'Book issued successfully.')
         }
+        window.setTimeout(() => {
+            location.assign('/books')
+        })
 
     }
     catch(err) {
@@ -182,6 +206,9 @@ export const returnBook = async(data, id) => {
         if (res.data.status == 'success') {
             showAlert('success', 'Book returned successfully.')
         }
+        window.setTimeout(() => {
+            location.assign('/books-issued')
+        })
     }
     catch (err) {
         showAlert('error', err.response.data.message)

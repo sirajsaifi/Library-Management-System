@@ -115,8 +115,9 @@ if (updateUserForm) updateUserForm.addEventListener('submit', async e => {
   const number = document.getElementById('number').value
   
   const id = document.getElementById('id').value
+  const role = document.getElementById('user-container-main-heading').getAttribute('value')
   
-  await updateUser({name, email, gender, number}, id)
+  await updateUser({name, email, gender, number}, id, role)
   document.getElementById('update-user').textContent = 'Update'
 })
 
@@ -125,15 +126,16 @@ if (deleteUserForm) deleteUserForm.addEventListener('submit', async e => {
   e.preventDefault()
 
   const id = document.getElementById('id').value
+  const role = document.getElementById('user-container-main-heading').getAttribute('value')
 
-  deleteUser(id)
+  deleteUser(id, role)
 })
 
 
 if (createBookForm) createBookForm.addEventListener('submit', async e => {
   e.preventDefault()
   document.getElementById('create-book-btn').textContent = 'Creating...'
-  
+
   const getBookName = document.getElementById('book-name').value
   const getBookAuthor = document.getElementById('book-author').value
   const getBookPublisher = document.getElementById('book-publisher').value
@@ -154,8 +156,6 @@ if (createBookForm) createBookForm.addEventListener('submit', async e => {
 if (updateBookForm) updateBookForm.addEventListener('submit', async e => {
   e.preventDefault()
   document.getElementById('update-book').textContent = 'Updating...'
-  
-  const form = new FormData()
 
   const getBookName = document.getElementById('book-name').value
   const getBookAuthor = document.getElementById('book-author').value
@@ -167,11 +167,9 @@ if (updateBookForm) updateBookForm.addEventListener('submit', async e => {
   form.append("bookPages", document.getElementById('book-pages').value)
   form.append("bookPrice", document.getElementById('book-price').value)
   form.append("bookState", document.getElementById('book-state').value)
-  form.append("image", document.getElementById('photo').files[0])
   
   const id = document.getElementById('book-id').value
   
-  // await updateBook({bookName, bookAuthor, bookPublisher, bookPages, bookPrice, bookState, image}, id)
   await updateBook(form, id)
   document.getElementById('update-book').textContent = 'Update'
 })

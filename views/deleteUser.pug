@@ -14,7 +14,7 @@ block content
                         img#user-container-photo(src=`/img/users/${deleteUserForm.photo}`, alt=`${deleteUserForm.name} image`)
                         input#name(type="text", value=`${deleteUserForm.name}`, name="name")
                     #user-container-main
-                        #user-container-main-heading
+                        #user-container-main-heading(value=`${deleteUserForm.role}`)
                             | Details
                         +deleteUser("id", "Id", "text", "id", `${deleteUserForm._id}`, true)
                         +deleteUser("email", "Email Address", "email", "email", `${deleteUserForm.email}`, true)

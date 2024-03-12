@@ -12,8 +12,8 @@ block user-account
                 form.form.form-user-data
                         +settingUser("name", "Name", "text", "name", `${user.name}`)
                         +settingUser("email", "Email Address", "email", "email", `${user.email}`)
-                        +settingUser("number", "Phone No.", "number", "number", `${user.number}`)
                         +settingUser("gender", "Gender", "text", "gender", `${user.gender}`)
+                        +settingUser("number", "Phone No.", "number", "number", `${user.number}`)
                         .user-photo-form
                                 img#form-user-data-photo(src=`img/users/${user.photo}`, alt='User Photo')
                                 input#photo.user-photo-upload(type="file", name="photo", accept="image/*")

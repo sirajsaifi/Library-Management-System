@@ -15,9 +15,14 @@ block user-account
             +createBook("book-publisher", "Book Publisher", "text", "book-publisher", true)
             +createBook("book-pages", "Book Pages", "number", "book-pages", true)
             +createBook("book-price", "Book Price", "number", "book-pages", true)
-            select#create-book-state(name="book-state", required) 
+            label(for="create-book-state")
+                | Availability
+            select#create-book-state(name="book-state", required)
                 option(value="Available") Available  
                 option(value="Unavailable") Unavailable
+            input#photo.book-photo-upload(type="file", name="photo", accept="image/*")
+            label(for="photo")
+                | Choose a new photo
             .settings-btn
                 button#create-book-btn.update-create-btn
                     | Create Book

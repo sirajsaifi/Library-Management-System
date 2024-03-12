@@ -14,7 +14,7 @@ block content
                         img#user-container-photo(src=`/img/users/${updateUserForm.photo}`, alt=`${updateUserForm.name} image`)
                         input#name(type="text", value=`${updateUserForm.name}`, name="name")
                     #user-container-main
-                        #user-container-main-heading
+                        #user-container-main-heading(value=`${updateUserForm.role}`)
                             | Details
                         +updateUser("id", "Id", "text","id", `${updateUserForm._id}`, true)
                         +updateUser("email", "Email Address", "email","email", `${updateUserForm.email}`)

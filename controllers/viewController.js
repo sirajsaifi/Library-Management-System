@@ -18,11 +18,13 @@ exports.getOverview = catchAsync(async (req, res) => {
     })
 })
 
+
 exports.getLoginForm = catchAsync(async (req, res) => {
     res.status(200).render('login', {
         title: 'Log into your account'
     })
 })
+
 
 exports.getMyAccount = (req, res) => {
     res.status(200).render('settings', {
@@ -30,10 +32,13 @@ exports.getMyAccount = (req, res) => {
     })
 }
 
+
 exports.updateUserData = catchAsync(async (req, res, next) => {
     const updatedUser = await User.findByIdAndUpdate(req.user.id, {
         name: req.body.name,
-        email: req.body.email
+        email: req.body.email,
+        gender: req.body.gender,
+        number: req.body.number
     },
         {
             new: true,  //to get updated document as a result
@@ -45,13 +50,15 @@ exports.updateUserData = catchAsync(async (req, res, next) => {
     })
 })
 
+
 exports.createUser = (req, res) => {
-    res.status(200).render('createUser', {
+    res.status(201).render('createUser', {
         title: 'Create User'
     })
 }
 
-exports.getStudents = catchAsync(async(req, res) => {
+
+exports.getStudents = catchAsync(async (req, res) => {
     const students = await User.find()
 
     res.status(200).render('students', {
@@ -60,7 +67,8 @@ exports.getStudents = catchAsync(async(req, res) => {
     })
 })
 
-exports.getStaff = catchAsync(async(req, res) => {
+
+exports.getStaff = catchAsync(async (req, res) => {
     const staffs = await User.find()
 
     res.status(200).render('staff', {
@@ -69,9 +77,17 @@ exports.getStaff = catchAsync(async(req, res) => {
     })
 })
 
-exports.updateUser = catchAsync(async(req, res) => {
+
+exports.updateUser = catchAsync(async (req, res) => {
     const id = await req.query.id
-    const updateUserForm = await User.findById(id)
+    const updateUserForm = await User.findByIdAndUpdate(id, {
+        email: req.body.email,
+        gender: req.body.gender,
+        number: req.body.number
+    }, {
+        new: true,
+        runValidators: true
+    })
 
     res.status(200).render('updateUser', {
         title: 'Update User',
@@ -79,7 +95,8 @@ exports.updateUser = catchAsync(async(req, res) => {
     })
 })
 
-exports.deleteUser = catchAsync(async(req, res) => {
+
+exports.deleteUser = catchAsync(async (req, res) => {
     const id = await req.query.id
     const deleteUserForm = await User.findById(id)
 
@@ -89,13 +106,14 @@ exports.deleteUser = catchAsync(async(req, res) => {
     })
 })
 
+
 exports.createBook = (req, res) => {
     res.status(200).render('createBook', {
         title: 'Create Book'
     })
 }
 
-exports.getBooks = catchAsync(async(req, res) => {
+exports.getBooks = catchAsync(async (req, res) => {
     const books = await Book.find()
 
     res.status(200).render('books', {
@@ -104,17 +122,33 @@ exports.getBooks = catchAsync(async(req, res) => {
     })
 })
 
-exports.updateBook = catchAsync(async(req, res) => {
-    const id = req.query.id
 
-    const updateBook = await Book.findById(id)
+exports.updateBook = catchAsync(async (req, res) => {
+    const id = await req.query.id
+
+    // const updateBook = await Book.findById(id)
+    const updateBook = await Book.findByIdAndUpdate(id, {
+        bookName: req.body.bookName,
+        bookAuthor: req.body.bookAutho,
+        bookPublisher: req.body.bookPublisher,
+        bookPages: req.body.bookPages,
+        bookPrice: req.body.bookPrice,
+        bookState: req.body.bookState,
+        image: req.body.image
+    },
+        {
+            new: true,
+            runValidators: true
+        })
+
     res.status(200).render('updateBook', {
         title: 'Update Book',
         updateBook
     })
 })
 
-exports.deleteBook = catchAsync(async(req, res) => {
+
+exports.deleteBook = catchAsync(async (req, res) => {
     const id = req.query.id
 
     const deleteBook = await Book.findById(id)
@@ -124,7 +158,7 @@ exports.deleteBook = catchAsync(async(req, res) => {
     })
 })
 
-exports.issueBook = catchAsync(async(req, res) => {
+exports.issueBook = catchAsync(async (req, res) => {
     const id = req.query.id
 
     const issueBook = await Book.findById(id)
@@ -134,7 +168,7 @@ exports.issueBook = catchAsync(async(req, res) => {
     })
 })
 
-exports.booksIssued = catchAsync(async(req, res) => {
+exports.booksIssued = catchAsync(async (req, res) => {
     const booksIssued = await IssueBook.find()
 
     res.status(200).render('issuedBooks', {
@@ -143,7 +177,8 @@ exports.booksIssued = catchAsync(async(req, res) => {
     })
 })
 
-exports.returnBook = catchAsync(async(req, res) => {
+//
+exports.returnBook = catchAsync(async (req, res) => {
     const id = req.query.id
     const returnBook = await IssueBook.findById(id)
 
@@ -153,22 +188,22 @@ exports.returnBook = catchAsync(async(req, res) => {
     })
 })
 
-exports.booksIssuedStudent = catchAsync(async(req, res) => {
+exports.booksIssuedStudent = catchAsync(async (req, res) => {
     const id = req.query.id
-    const issues = await IssueBook.find({user : id})
+    const issues = await IssueBook.find({ user: id })
 
-    res.status(200).render('bookIssuedStudent',{
+    res.status(200).render('bookIssuedStudent', {
         title: 'Issues',
         issues
-    } )
+    })
 })
 
-exports.myBooks = catchAsync(async(req, res) => {
-    const issues = await IssueBook.find({user : req.user.id})
+exports.myBooks = catchAsync(async (req, res) => {
+    const issues = await IssueBook.find({ user: req.user.id })
 
-    res.status(200).render('bookIssuedStudent',{
+    res.status(200).render('bookIssuedStudent', {
         title: 'Issues',
         issues
-    } )
+    })
 })
 
