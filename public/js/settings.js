@@ -18,6 +18,7 @@ export const updateAccount = async(data) => {
         if (res.data.status == 'success') {
             showAlert('success', 'Your account was successfully updated.')
         }
+        location.reload(true)
     }
     catch(err) {
         showAlert('error', err.data.response.message)
@@ -163,9 +164,8 @@ export const deleteBook = async(id) => {
             url: (process.env.NODE_ENV === 'production') ? `/api/v1/books/${id}` : `http://127.0.0.1:5500/api/v1/books/${id}`,
             id
         })
-        if (res.data.status == 'success') {
-            showAlert('success', 'Book deleted successfully.')
-        }
+        showAlert('success', 'Book deleted successfully.')
+
         window.setTimeout(() => {
             location.assign('/books')
         }, 1000)
