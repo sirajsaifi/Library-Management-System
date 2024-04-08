@@ -10,7 +10,8 @@ const bookSchema = new mongoose.Schema({
         type: String,
         required : [true, 'A book must have a name.'],
         minlength : [5, 'A book name must have a length of more than 5 characters.'] ,
-        maxlength : [30, 'A book name must have a length of less than 40 characters.']
+        maxlength : [30, 'A book name must have a length of less than 40 characters.'],
+        unique: true
     },
     slug : String,
     bookAuthor : {

@@ -4,10 +4,11 @@ const bookController = require('../controllers/bookController')
 const authController = require('.././controllers/authController')
 const router = express.Router()
 
-router.use(authController.protect)
+// router.use(authController.protect)
 
 router.route('/').get(bookController.getAllBooks)
 
+router.use(authController.protect)
 router.use(authController.restrictTo('librarian'))
 
 router.post('/create-book', bookController.createBook)

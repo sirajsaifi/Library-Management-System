@@ -131,7 +131,7 @@ userSchema.methods.createPasswordResetToken = function() {
     //encrypted password sent to DB
     this.passwordResetToken = crypto.createHash('sha256').update(resetToken).digest('hex')  //sha256 is a algorithm
 
-    this.passwordResetExpires = Date.now() + 10 + 60 * 1000 //10 min, 60 is sec, 1000 millisecond
+    this.passwordResetExpires = Date.now() + 10 * 60 * 1000 //10 min, 60 is sec, 1000 millisecond
 
     return resetToken   //unencrypted password
 }

@@ -34,7 +34,7 @@ exports.resizeUserPhoto = catchAsync(async (req, res, next) => {
 
     req.file.filename = `user-${req.user.id}-${Date.now()}.jpeg`
     //we have file.filename above because below in updateMe controller we are assigning it to
-    // filteredBody.photo...if it wasn't assigned below then it should be body.photo above
+    // filteredBody.photo...if it wasn't assigned below then it should be req.body.photo above
     //width(500) and height(500)
     await sharp(req.file.buffer)
         .resize(500, 500)

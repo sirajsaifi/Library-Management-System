@@ -2,13 +2,13 @@ const AppError = require('../utils/appError')
 
 
 const handleCastErrorDB = err => {  //trying an invalid id for get booklike wwwwwwwwwwwwww
-    const message = `Invlaid ${err.path}: ${err.value}`
+    const message = `Invalid ${err.path}: ${err.value}`
     return new AppError(message, 400)
 }
 
 
 // show error for the fields that are supposed to be unique which are given in Model file
-const handleDuplicateFieldsDB = err => {    //creating a tour with existing tour name
+const handleDuplicateFieldsDB = err => {    //creating a book with existing book name
     const value = Object.keys(err.keyValue)[0]
     console.log(value)
 
